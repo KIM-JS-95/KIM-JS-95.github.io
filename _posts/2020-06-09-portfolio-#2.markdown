@@ -4,13 +4,12 @@ title: '전기 충전소 안내 지도'
 date: 2021-06-09
 author: KIM-JS-95
 color: rgb(255,210,32)
-cover: ![1](https://user-images.githubusercontent.com/65659478/103516363-c1a72000-4eb3-11eb-98d6-ddb5b29c0d1c.jpg)
+cover: '/image/charge.png'
 subtitle: 'Tesla의 주주에서 시작하는 웹 서비스'
 tags: AWS TESLA KAKAO-API PORTFOLIO
 ---
 
-
-# PORTFOLIO(#1) [![Build Status](https://travis-ci.org/KIM-JS-95/KAKAOMAP.svg?branch=main)](https://travis-ci.org/KIM-JS-95/KAKAOMAP)
+# PORTFOLIO(#2)
 
 ## Introduction
 
@@ -72,10 +71,9 @@ The address coordinates received from the previous page have been configured to 
 2021.01 ~ 2021.02
 
 ### Notice
-```bash
+
 [WEBSITE DNS]  http://www.ecstation.tk/
 
-** 현재 aws 비용 미지불로 서비스가 중지되어 있는 상태 입니다.
+현재 aws 비용 미지불로 서비스가 중지되어 있는 상태 입니다.
 
 Create a map that Charge station for electric vehicles With KAKAO Api
-```
