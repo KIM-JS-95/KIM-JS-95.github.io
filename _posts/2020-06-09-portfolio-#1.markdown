@@ -4,8 +4,9 @@ title: 'CRUD 구현 및 AWS 배포 실습'
 date: 2021-06-09
 author: KIM-JS-95
 color: rgb(255,210,32)
-cover: 'http://on2171g4d.bkt.clouddn.com/jekyll-banner.png'
-tags: AWS , SPRING-BOOT, Auth-api , PORTFOLIO
+cover: 'image/spring.png'
+subtitle: '웹 서비스 개발의 첫걸음!'
+tags: AWS SPRING-BOOT Auth-api PORTFOLIO
 ---
 
 > Transform your plain text into static websites and blogs.
