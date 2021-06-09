@@ -4,12 +4,11 @@ title: 'CRUD 구현 및 AWS 배포 실습'
 date: 2021-06-09
 author: KIM-JS-95
 color: rgb(255,210,32)
-cover: '/image/spring.png'
+cover: 'image/p1/spring.png'
 subtitle: '웹 서비스 개발의 첫걸음!'
 tags: AWS SPRING-BOOT Auth-api PORTFOLIO
 ---
 
-> Transform your plain text into static websites and blogs.
 
 # PORTFOLIO(#1)
 
@@ -39,13 +38,13 @@ Front - end
 
 [1] 상단: 게시판 로그인 서비스
 하단: crud 게시판
-![1.png](image/1.png)
+![1.png](image/p1/1.png)
 
 [2] 로그인 서비스(Google && Naver 즉시 연동 가능)
-![Content_View](image/Content_View.jpg)
+![Content_View](image/p1/Content_View.jpg)
 
 [3] 예시) Google 로그인 페이지
-![Login.jpg](image/Login.jpg)
+![Login.jpg](image/p1/Login.jpg)
 
 
 ### What did you learn?
