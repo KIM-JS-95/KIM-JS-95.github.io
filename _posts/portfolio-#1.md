@@ -1,0 +1,58 @@
+---
+layout: post
+title: 'CRUD 구현 및 AWS 배포 실습'
+date: 2021-06-09
+author: KIM-JS-95
+color: rgb(255,210,32)
+cover: 'http://on2171g4d.bkt.clouddn.com/jekyll-banner.png'
+tags: AWS , SPRING-BOOT, Auth-api , PORTFOLIO
+---
+
+> Transform your plain text into static websites and blogs.
+
+# PORTFOLIO(#1)
+
+## Introduction
+
+Spring boot 프레임 워크를 사용한 첫 개발 작품 입니다. 웹 서비스 구성의 기본적인 기능을 담당하는 CRUD 기능을 구현하고 Maria DB 테이블을 AWS에 배포하여 웹에서 서비스를 이용할 수 있도록 구성하였습니다.
+추가적으로 Auth 인증 기능은 Naver와 Google에서 제공하는 Secure API를 적용하여 계정을 인증하여 사용할 수 있도록 구성했습니다.
+
+### Stack
+
+Back - end
+```bash
+1. Java (ver. 15.0.1)
+2. Gradle (var. 4.10.2)
+3. Amazon AWS
+4. Maria DB
+5. Spring boot (ver. 2.1.9)
+```
+
+Front - end
+```bash
+1. Mustache
+2. Javascript
+```
+
+### Development process
+
+[1] 상단: 게시판 로그인 서비스
+하단: crud 게시판
+![1.png](image/1.png)
+
+[2] 로그인 서비스(Google && Naver 즉시 연동 가능)
+![Content_View](image/Content_View.jpg)
+
+[3] 예시) Google 로그인 페이지
+![Login.jpg](image/Login.jpg)
+
+
+### What did you learn?
+
+1. what is Oauth Secure API?
+2. Amazon AWS?
+3. Spring Boot Foundation
+
+### Develop period
+
+2020.11 ~ 2020.12

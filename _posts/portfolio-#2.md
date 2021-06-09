@@ -1,0 +1,81 @@
+---
+layout: post
+title: '전기 충전소 안내 지도'
+date: 2021-06-09
+author: KIM-JS-95
+color: rgb(255,210,32)
+cover: 'http://on2171g4d.bkt.clouddn.com/jekyll-banner.png'
+tags: AWS ,TESLA, KAKAO-API , PORTFOLIO
+---
+
+
+# PORTFOLIO(#1) [![Build Status](https://travis-ci.org/KIM-JS-95/KAKAOMAP.svg?branch=main)](https://travis-ci.org/KIM-JS-95/KAKAOMAP)
+
+
+## Introduction
+
+카카오 api를 사용하여 개발한 전기충전소 위치 제공 서비스입니다.
+
+웹에서 간단한 주소를 입력하여 편리하게 지도로 확인가능하며 충전시간동안 여유시간을 이용하여 편의 시설을 이용할 수 있도록 공공시설 레이아웃을 제공합니다.
+
+### Stack
+
+Back - end
+```bash
+1. Java (ver. 15.0.1)
+2. Gradle (var. 4.10.2)
+3. Amazon AWS
+4. MySQL
+5. Spring boot (ver. 2.1.9)
+```
+
+Front - end
+```bash
+1. Mustache
+2. Javascript
+```
+
+### Development process
+
+#### 1.MAIN PAGE
+![1](https://user-images.githubusercontent.com/65659478/103516363-c1a72000-4eb3-11eb-98d6-ddb5b29c0d1c.jpg)
+![4](https://user-images.githubusercontent.com/65659478/103996407-25478b00-51dd-11eb-8104-5e27c4ae8e24.jpg)
+It consists of four-part slides that can be moved by scrolling and configured responsively so that the page size changes freely depending on the size.
+
+You can search for addresses on the MAP slide No. 3, and when you do, go to the ADD Searching page.
+
+
+
+
+#### 2. Adresses Searching page
+![2](https://user-images.githubusercontent.com/65659478/103516428-e00d1b80-4eb3-11eb-98af-368e51c7b155.jpg)
+
+If the address search was successful, we had the DB bring in and display the entities that contained the address.
+
+Click an address to send it to the MAP page and display it on the map.
+
+It consists of 5 slides so you can check the information you need, such as developer information and vehicle company homepage.
+
+#### 3. Map page
+![3](https://user-images.githubusercontent.com/65659478/103516433-e13e4880-4eb3-11eb-985e-75777cbfe3a3.jpg)
+
+Map configured using KAKAO map api.
+
+The address coordinates received from the previous page have been configured to show the location on the map, and a layout to check the location of the amenities has been added so that convenience can be used during the vehicle charging time.
+
+### What did you learn?
+1. How to use API?
+2. Mysql - SpringBoot connetion.
+
+### Develop period
+
+2021.01 ~ 2021.02
+
+### Notice
+```bash
+[WEBSITE DNS]  http://www.ecstation.tk/
+
+** 현재 aws 비용 미지불로 서비스가 중지되어 있는 상태 입니다.
+
+Create a map that Charge station for electric vehicles With KAKAO Api
+```
