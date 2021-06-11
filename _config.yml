@@ -18,13 +18,14 @@ NickName: 'hjhahahaha'
 webtitle: 'my blog'
 bio: '1995 . 05 . 06'
 about: true
-aboutyou: '{\n
-"Name" : "KIM JAE-SEONG ",\n
-"Birth" : "1995.05.06",\n
-"Hobby" : "Fitness"\n
-"Like" : "Protein"\n
-"Languages" : ["KOREAN", "JAPANESE", "JAVA"]\n
-}'
+aboutyou:
+    '{'+ \n +
+' "Name" : "KIM JAE-SEONG",' \n +
+' "Birth" : "1995.05.06",' \n +
+'"Hobby" : "Fitness" '\n +
+'"Like" : "Protein" '\n +
+'"Languages" : ["KOREAN", "JAPANESE", "JAVA"] ' \n +
+'}'
 portraits: '/assets/profile.jpeg' # your portraits image file path
 
 # SNS
