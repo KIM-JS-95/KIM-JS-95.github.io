@@ -29,7 +29,7 @@ SNS-icon: #['Facebook', 'weibo', 'qq', 'github', 'Dribbble', 'Twitter', 'instagr
   instagram: 'https://www.instagram.com/k.jasoooon'
 
 # 分页
-paginate: 5
+paginate: 2
 paginatepath: ['page:num']
 
 # since
