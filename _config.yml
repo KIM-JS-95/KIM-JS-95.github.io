@@ -19,13 +19,12 @@ webtitle: 'my blog'
 bio: '1995 . 05 . 06'
 about: true
 aboutyou:
-    '{'
-' "Name" : "KIM JAE-SEONG",'
-' "Birth" : "1995.05.06",'
-'"Hobby" : "Fitness" '
-'"Like" : "Protein" '
-'"Languages" : ["KOREAN", "JAPANESE", "JAVA"] '
-'}'
+    '{"Name" : "KIM JAE-SEONG",
+"Birth" : "1995.05.06",
+"Hobby" : "Fitness",
+"Like" : "Protein",
+"Languages" : ["KOREAN", "JAPANESE", "JAVA"],
+}'
 
 portraits: '/assets/profile.jpeg' # your portraits image file path
 
