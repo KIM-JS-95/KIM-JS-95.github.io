@@ -1,14 +1,12 @@
 ---
 layout: post
-title: 'CRUD 구현 및 AWS 배포 실습'
-date: 2021-06-08
-author: KIM-JS-95
+title:  "Welcome!"
+date: 2021-06-12
+tags: introduce
 color: rgb(255,210,32)
-cover: '../assets/spring.png'
-subtitle: '웹 서비스 개발의 첫걸음!'
-tags: AWS SPRING-BOOT Auth-api PORTFOLIO
+cover: ''
+subtitle: 'Welcome to KIM's Tech-Blog!'
 ---
-
 
 # Who am I ?
 
