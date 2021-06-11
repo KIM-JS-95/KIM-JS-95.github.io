@@ -6,10 +6,10 @@ url: 'https://github.com/KIM-JS-95/KIM-JS-95.github.io.git' # your host
 
 # nav 中文字符空格：&emsp;
 nav: # 最佳体验 六个标签 且最好每个标签不超过4中文字
-  首页: '/'
-  标签: '/tags.html'
-  时间线: '/timeline.html'
-  关于博主: '/about.html'
+  HOME: '/'
+  TAGS: '/tags.html'
+  TIMELINE: '/timeline.html'
+  ABOUT: '/about.html'
 
 # 博主
 author: true
