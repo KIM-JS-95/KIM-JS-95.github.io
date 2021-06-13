@@ -7,9 +7,9 @@ color: rgb(98,170,255)
 subtitle: 'Graph Algorithm Essential Theory'
 ---
 
-# 2021-06-13-Algo-REVIEW
+## 2021-06-13-Algo-REVIEW
 
-## Graph Algo?
+### Graph Algo?
 
 * graph 란 Node와 Node사이에 연결된 Edge 의 정보를 가지고 있는 자료구조
 
@@ -101,9 +101,20 @@ private static int find(int x){
   }
 ```
 
+### 최소한의 비용으로 모든 노드를 순회(Kruskal Algorithm)
+크루스칼 알고리즘은 **신장트리** 자료구조를 기반으로 하며 **작은 비용으로 모든 노트를 순회**를 목적으로 한다.
+이때 시간 복잡도는 **O(ElogE)** 이다.
+
+( **신장트리** : 하나의 크래프가 존재할 때 모든 노드를 포함하면서 사이클이 존재하지 않는 그래프)
+  1. 간선의 크기에 따라 오름차순 정렬
+  2. 간선을 하나씩 확인하며 현재의 간선이 사이클을 발생하는지 판단(Union-Find Algorithm)
+  3. 모든 간선에 대해 2번의 과정을 반복
+
+---
 ###  🙆‍♂ 예시 코드 링크
 * [Union-Find Algorithm](<script src="https://gist.github.com/KIM-JS-95/f1753e699e0e1cb653d0201b3dc7bf68.js"></script>)
 * [Union-find Cycle Algorithm](<script src="https://gist.github.com/KIM-JS-95/f357596c9d9ef7943328bb0fb89e784f.js"></script>)
+* [Kruskal Algorithm](<script src="https://gist.github.com/KIM-JS-95/f5f328363608d7d05c23bff84f53cb3b.js"></script>)
 
 ### 🧾 Reference
 * [이것이 코딩 테스트다 whit Python](https://github.com/ndb796/python-for-coding-test.git)
