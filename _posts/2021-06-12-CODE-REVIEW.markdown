@@ -17,7 +17,7 @@ subtitle: '2021-06-12-Self Code REVIEW'
 3. AdminController.checkOut() func Modify (Now)
 
 
-## AcceptControllerTest Mvc Error
+### AcceptControllerTest Mvc Error
 
 *  🤦‍♂Cause
 
@@ -49,6 +49,7 @@ MockHttpServletRequest:
 
 ---
 * 🙆‍♂Debuging
+  
   @RequestBody Annotation을 사용할 경우 요청 데이터에 적합한 json Data를 전송해줘야함
   
 
@@ -66,11 +67,12 @@ MockHttpServletRequest:
 ```
 
 
-## 양방향 Mapping 과 N+1 Error
+### 양방향 Mapping 과 N+1 Error
 양방향 Mapping으로 Room Entity로부터 Admin Entity의 Id컬럼을 조회하여 Delete 기능을 구현하는 과정에서
 
-### 원인
-<b> N+1 Error</b> 가 발생하여 두 Entity 사이의 무한한 조회가 발생  
+*  🤦‍♂Cause
+
+<b> N+1 Error</b> 가 발생하여 두 Entity 사이의 무한 조회가 발생  
 
 ```bash
 public class Admin {
@@ -78,19 +80,22 @@ public class Admin {
     @Id
     @GeneratedValue
     private Long id;
-
     private String email;
-
     private String name;
-
     private String phonenum;
-
     private String people;
-
     @OneToOne
     @JoinColumn(name="ROOM_roomnum")
     private Room room;
 
+public class Room {
+
+    @Id
+    private String roomnum;
+    private String bedtype;
+    private String st;
+    @OneToOne
+    private Admin admin;
 }
 ```
 
@@ -99,16 +104,19 @@ public class Room {
 
     @Id
     private String roomnum;
-
     private String bedtype;
-
     private String st;
-
     @OneToOne
     private Admin admin;
 }
 
 ```
+* 🙆‍♂Debuging
+아래 블로그를 따라 N+1 Mapping Error 을 해결하는 방법은 2가지 방법을 제안한다.
+  * @OnetoOne 단방향 으로 Mapping 할 것 
+  * @OnettoMany 양방향으로 Mapping 할 것
+  
 
-### My github link
+https://ckdgus.tistory.com/75
+### My GitHub link
 [해당 프로젝트 링크](https://github.com/KIM-JS-95/AbstractCnS.git)
