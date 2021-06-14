@@ -15,7 +15,7 @@ subtitle: 'Graph Algorithm Essential Theory'
 * graph 란 Node와 Node사이에 연결된 Edge 의 정보를 가지고 있는 자료구조
 
 |  | Graph | Tree |
-|---|:---:|---:|
+|:---:|:---:|:---:|
 | 방향성 | 방향 그래프 혹은 무방향 | 방향 그래프 |
 | 순환성 | 순환 혹은 비순환 | 비순환 | 
 | 루트 노드 존재 여부 | 루트 노드 없읍 | 루트 노드 존재 |
@@ -27,7 +27,7 @@ subtitle: 'Graph Algorithm Essential Theory'
   * 인접 리스트 : 리스트를 사용하는 방식  
 
 |  | Memory space | Time |
-|---|:---:|---:|
+|:---:|:---:|:---:|
 | 인접 행렬 | O(V<sup>2</sup>) | O(1) |
 | 인접 리스트 | O(E) | O(V) | 
 
