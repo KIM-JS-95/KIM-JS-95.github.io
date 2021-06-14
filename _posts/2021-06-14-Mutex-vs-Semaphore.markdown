@@ -1,11 +1,11 @@
 ---
 layout: post
-title: "Mutex VS Semaphore"
-date: 2021-06-14
-tags: CS
+title: "Union-Find Algorithm"
+date: 2021-06-13
+tags: Algorithm
 color: rgb(98,170,255)
 author: KIM-JS-95
-subtitle: 'What's Different Mutex Semaphore'
+subtitle: 'Graph Algorithm Essential Theory'
 ---
 
 ## Mutex VS Semaphore
