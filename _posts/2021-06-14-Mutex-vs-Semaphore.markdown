@@ -5,7 +5,7 @@ date: 2021-06-14
 tags: CS
 color: rgb(98,170,255)
 author: KIM-JS-95
-subtitle: '.What's Different Mutex Semaphore'
+subtitle: 'What's Different Mutex Semaphore'
 ---
 
 ## Mutex VS Semaphore
@@ -29,7 +29,6 @@ subtitle: '.What's Different Mutex Semaphore'
   |:---:|:---:|:---:|
   | 성능 | 향상 | 저하 |
   | 기능 | 저하 | 향상 |
-|
 ### Common
 Mutex 와 Semaphore 는 공유 자원에 접근하는 것을 제어하기 위한 병렬 처리를 위한 프로세스 동기화 기법이다.
 
