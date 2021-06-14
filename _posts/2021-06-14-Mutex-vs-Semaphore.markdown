@@ -1,11 +1,11 @@
 ---
 layout: post
-title: "Union-Find Algorithm"
-date: 2021-06-13
-tags: Algorithm
+title: "Mutex VS Semaphore"
+date: 2021-06-14
+tags: CS
 color: rgb(98,170,255)
 author: KIM-JS-95
-subtitle: 'Graph Algorithm Essential Theory'
+subtitle: 'what is different between Mutex and Semaphore'
 ---
 
 ## Mutex VS Semaphore
@@ -23,12 +23,14 @@ subtitle: 'Graph Algorithm Essential Theory'
   * Memory 접근에 있어 동시 접근을 방지
     * 실행 순서에 상관 없이, 한순간에 한가지의 스레드만 접근하도록 구성 
 
+
 * 동기화 기법의 종류
   
   |  | 유저모드 | 커널모드 |
   |:---:|:---:|:---:|
   | 성능 | 향상 | 저하 |
   | 기능 | 저하 | 향상 |
+
 ### Common
 Mutex 와 Semaphore 는 공유 자원에 접근하는 것을 제어하기 위한 병렬 처리를 위한 프로세스 동기화 기법이다.
 
