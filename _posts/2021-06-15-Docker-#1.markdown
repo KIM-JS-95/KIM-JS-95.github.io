@@ -1,0 +1,34 @@
+---
+layout: post
+title:  "Docker #1"
+date:   2021-06-15 14:05:21 +0800
+tags: docker
+color: rgb(255,90,90)
+subtitle: 'Start Docker'
+---
+
+## What is Container
+* 응용 프로그램의 종속성과 함께 응용프로그램자체를 캡술화 한것.
+* OS(Operating System)의 격리된 인스턴스 형태로 응용프로그램을 시행한다.
+
+#### < 장점 >
+* 호스트 OS에 있는 자우너들을 공유하여 효율성 향상
+* 운영 환경의 변경으로 생기는 버그를 없앨 수 있는 이식성 제공
+*  여러 컨테이너를 운영하여 <u>사용 분산 시스템</u>을 에뮬레이트 할 수 있도록 해줌
+*  사용 환경 간에 다른 점과 종속성에 대해 고혀할 필요가 없다.
+
+### Container VS VM(가상 머신)
+* 목적성
+  * VM: 외부 환경을 완전하게 에뮬레이트
+  * Container : 응용프로그램의 이식성, 독립성
+  
+## Docker
+* Dockerfiler + Docker Registries 으로 구성되어 있다.
+* 컨테이너를 운영하기 위해 빠르고 간편한 인터페이스를 제공한다.
+* <u>다운로드 가능한 막대한 양의 컨테이너 이미지를 제공</u>하여 진입장벽을 낮추고 외부 유저가 사용할 수 있다는 장점이 있다.
+> ex.) docker run debian echo "hello world"
+> * debian은 docker에서 제공하는 image의 이름
+
+
+> UFS(Union File System)
+> 여러개의 파일 시스템을 겁칠 수 있도록 해줌 반대로 사용자에게는 하나의 파일 시스템 처럼 보이게 된다.
