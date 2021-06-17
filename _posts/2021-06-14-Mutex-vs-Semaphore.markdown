@@ -3,7 +3,7 @@ layout: post
 title: "Mutex VS Semaphore"
 date: 2021-06-14
 tags: CS
-color: rgb(98,170,255)
+color: rgb(051,255,051)
 author: KIM-JS-95
 subtitle: 'what is different between Mutex and Semaphore'
 ---
