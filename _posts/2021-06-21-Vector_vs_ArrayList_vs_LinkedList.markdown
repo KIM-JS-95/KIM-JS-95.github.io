@@ -1,10 +1,10 @@
 ---
 layout: post
 title:  "Vector vs ArrayList vs LinkedList"
-date:   2021-06-8 14:05:21 +0800
+date:   2021-06-21 12:05:21 +0800
 tags: CS JAVA LIST
 color: rgb(051,255,051)
-subtitle: ''
+subtitle: 'List 인터페이스'
 --- 
 
 ##  Vector vs ArrayList vs LinkedList

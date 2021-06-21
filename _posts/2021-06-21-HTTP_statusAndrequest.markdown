@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "HTTP 상태와 요청"
-date:   2021-06-8 14:05:21 +0800
+date:   2021-06-21 14:05:21 +0800
 tags: CS HTTP
 color: rgb(051,255,051)
 subtitle: 'HTTP 상태와 요청'
