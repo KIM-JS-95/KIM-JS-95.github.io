@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "SpringBootServletInitializer 상속"
-date:   2021-06-8 14:05:21 +0800
+date:   2021-06-21 11:00:21 +0800
 tags: SpringBoot 
 color: rgb(154,133,255)
 subtitle: ''
