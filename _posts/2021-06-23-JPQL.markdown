@@ -95,7 +95,9 @@ List<MemberJPQL> members = typeQuery.getResultList();
 > * 런타임 시점에 오류가 발생 가능성
 > * 복잡한 사용 방식 가독성 떨어짐
 
-#### QueryDSL(코드형태)
+---
+
+#### 2. QueryDSL(코드형태)
 
 Criteria 쿼리와 동일하게 JPQL 빌더 역할을 가지며 단순하고 사용하기 편리하다. 단 비표준화 형태의 쿼리
 
@@ -126,7 +128,9 @@ List<Member> list =
 > QueryDSL 단점
 > * QueryDSL은 Entity 클래스를 기반으로 QueryDSL 쿼리 전용 클래스를 만들어야 하는 단점
 
-#### 네이티브 SQL(문자형태)
+---
+
+#### 3. 네이티브 SQL(문자형태)
 JPA는 SQL이 지원하는 대부분의 문법과 SQL 함수들을 지원하지만 <u>특정 데이터베이스에 종속적인 기능은
 잘 지원하지 않는다.</u> 만일 특정 DB를 조회할 경우 JPA는 SQL을 직접 사용할 수 있는 기능을 지원하며
 이를 <u>네이티브 SQL이라고 한다.</u>
@@ -139,8 +143,40 @@ String sql = "SELETE ID, AGE, TEAM-ID, NAME FROM MEMBER, WHERE NAME = `kim`";
 List<Member> resultList = em.createNativeQuert(sql, Member.class).getResultList(); 
 ```
 
+> 네이티브 SQL 장점
+> * 특정 DB에 접근을 위한 JPA의 대체로 사용할 수 있다.
+
 > 네이티브 SQL 단점
 > * 특정 DB에 의존하는 만큼 DB가 변경될 경우 네이티브 SQL 쿼리도 수정해야한다.
+
+
+### 쿼리 객체의 반환
+작성한 JPQL을 실행 하려면 쿼리 객체를 만들어야 하며 객체는 TypeQuery, Query가 있으며 반환 타입의 명확한 지정의 유무에 따라
+달리 사용할 수 있다. (명확: TypeQuery / 불명확: Query)
+
+```bash
+// 문자 생성
+TypeQuery<Member> query = em.createQuery("SELETE m.username, m.age from Member m");
+// 쿼리 , 결과 조회
+List resultList =query.getResultList();
+
+for(Member member : resultList){
+  System.out.println("member");
+} 
+```
+
+```bash
+// 문자 생성
+Query query = em.createQuery("SELETE m.username, m.age from Member m");
+// 쿼리 , 결과 조회
+List resultList =query.getResultList();
+
+for(Object o : resultList){
+  Object[] result = (Object[]) o;  //결과가 둘 이상이면 Object[] 반환
+  System.out.println(result[0]);
+  System.out.println(result[1]);
+} 
+```
 
 ### Reference
 [!QueryDSL](https://ict-nroo.tistory.com/117)
