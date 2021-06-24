@@ -1,6 +1,9 @@
 ---
-layout: post title:  "객체지향 쿼리 JPQL"
-date:   2021-06-21 12:05:21 +0800 tags: JPA SPRING JPQL color: rgb(154,133,255)
+layout: post 
+title:  "객체지향 쿼리 JPQL"
+date:   2021-06-21 12:05:21 +0800 
+tags: JPA SPRING JPQL 
+color: rgb(154,133,255)
 subtitle: 'JPQL'
 --- 
 
