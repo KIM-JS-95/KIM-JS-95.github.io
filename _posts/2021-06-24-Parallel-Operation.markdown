@@ -35,11 +35,8 @@ subtitle: '병렬처리'
     </tr>
 </table>
 
-<center>
-
 ![동시성병렬성](https://t1.daumcdn.net/cfile/tistory/995359405FBBB9591C)
 
-</center>
 
 ### 병렬성의 구사지 옵션(데이터 병렬, 작업 병렬)
 * 데이터 병렬성 : 전체 데이터를 쪼개어 서브 데이터들로 만들고 이 버스 데이터들을 변렬 처리해서 작업하는 것.
@@ -55,11 +52,8 @@ CPU의 멀티 코어 수만큼 서브 요소들로 나누고, 각각의 서브 �
 런타임 중에 FF가 동작하는데 포크 단계에서는 전체 데이터를 서브데이터로 분리한다. 그 후 분리된 서브 데이터를 멀티 코어에서 병렬로 처리하고
 마지막으로 조인 단계에서 서브 결과를 결함해서 최종결과를 만들어 낸다.
 
-<center>
-
 ![포크조인프레임워크](https://media.geeksforgeeks.org/wp-content/uploads/20210404122934/forkjoin.png)
 
-</center>
 
 ### 항상 병렬처리를 해야할까?
 스트림 병렬 처리가 스트림 순차 처리보다 항상 실행성능이 좋은 것은 아니다.
@@ -81,5 +75,5 @@ Collection에 요소의 수가 적고 요소당 처리 시간이 짧으면 순�
 
 코어의 수만큼 병렬 처리(데이터 병렬 방식) 작업 수를 늘릴 수 있어 처리 속도를 늘릴 수 있다. 
 
-### Reference
-[!QueryDSL](https://ict-nroo.tistory.com/117)
+### 🧾Reference
+[!ForkJoinPool](https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ForkJoinPool.html)
