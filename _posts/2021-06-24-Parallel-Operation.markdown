@@ -1,7 +1,7 @@
 ---
 layout: post 
 title:  "Parallel Operation"
-date:   2021-06-21 12:05:21 +0800 
+date:   2021-06-24 12:05:21 +0800 
 tags: JAVA PARALLEL
 color: rgb(154,133,255)
 subtitle: '병렬처리'
