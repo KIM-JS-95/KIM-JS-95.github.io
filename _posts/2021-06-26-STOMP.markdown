@@ -1,0 +1,44 @@
+---
+layout: post 
+title:  "STOMP? WebSocket?"
+date:   2021-06-26 12:05:21 +0800 
+tags: SPRING
+color: rgb(154,133,255)
+subtitle: 
+--- 
+
+## WebSocket?
+
+WebSocket은 웹 상에서 쉽게 소켓 통신을 하게 해주는 라이브러리로 실시간 채팅 서비스, 알림 기능 서비스의 기반이 된다.
+ spring 에서는 SockJS 라이브러리와 메시지 전송을 효율적으로 해주기 위한 STOMP 프로토콜이 존재한다.  
+
+> payload?
+> 페이로드란 전송되는 데이터이며 Header와 MeTA 데이터, 에러 체크 비트 등과 같은 다양한 요소들을 함께 보내 데이터 전송 효율과 안전성을 
+> 높인다. 아래와 같은 데이터에서 페이로드는 "data"이며 나머지는 부가적인 정보이다.
+
+```JSON
+ {
+ "status":"",
+ "from": "localhost",
+ "to": "http://localhost:8080/chatroom/1",
+ "methid": "GET",
+ "data": {
+  "message": "hi!!"
+ }
+}
+```
+
+### STOMP(Simple/Streaming Test Oriented Messaging Protocol)?
+텍스트 기반의 프로토콜로 웹 소켓을 지원하는 통신 기술이다. TCP/WebSocket과 같은 신뢰성있는 양방향 streaming network protocol
+에 사용할 수 있다. 
+
+
+
+#### CORS(Cross-Origin Resource Sharing)?
+교차 출처 리소스 공유는 추가 HTTP 헤더를 사용해 헤더를 출처에서 실행중인 웹 어플리게이션이 다른 출러의 선택한 자원에 접근할 수 있는 권한을 부여하도록
+브라우저에 알려주는 기능이다.
+
+
+
+### 🧾Reference
+[!STOMP 구현](https://dev-gorany.tistory.com/235)
