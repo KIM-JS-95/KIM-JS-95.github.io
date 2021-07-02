@@ -41,4 +41,4 @@ WebSocket은 웹 상에서 쉽게 소켓 통신을 하게 해주는 라이브러
 
 
 ### 🧾Reference
-[!STOMP 구현](https://dev-gorany.tistory.com/235)
+[STOMP 구현](https://dev-gorany.tistory.com/235)
