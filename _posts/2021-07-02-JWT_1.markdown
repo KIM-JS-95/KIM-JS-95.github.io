@@ -55,6 +55,6 @@ JSON 웹 토큰은 세션 상태를 포함할 수 있다. 그러나 프로젝트
 
 
 ### 🧾Reference
-[JSON 웹 토큰](https://ko.wikipedia.org/wiki/JSON_%EC%9B%B9_%ED%86%A0%ED%81%B0)
-[JWT 구조](https://velog.io/@ayoung0073/springboot-JWT)
-[spring-boot JWT 예제](https://sup2is.github.io/2020/03/05/spring-security-login-with-jwt.html)
+1. [JSON 웹 토큰](https://ko.wikipedia.org/wiki/JSON_%EC%9B%B9_%ED%86%A0%ED%81%B0)
+2. [JWT 구조](https://velog.io/@ayoung0073/springboot-JWT)
+3. [spring-boot JWT 예제](https://sup2is.github.io/2020/03/05/spring-security-login-with-jwt.html)

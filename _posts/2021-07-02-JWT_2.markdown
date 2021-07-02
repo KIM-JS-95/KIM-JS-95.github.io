@@ -208,10 +208,13 @@ public class JwtUserDetailsService implements UserDetailsService {
 
 }
 ```
+
 1. @RequestBody 에서 데이터(email, password)를 가져온다.
 2. 데이터(email, password)를 확인한여 등록된 사용자인지 확인한다.
 3. 데이터를 DB에서 조회후 등록된 사용자라면 구현한 jwtTokenUtil.generateToken 메소드를 통해 토큰을 생성하여 반환한다.
+
 ---
+
 ### 3. Authorized Check
 토큰은 헤더에 포함되어 서버에 전송되게 되는데  Authorized 에 해당하는 **Bearer "your Token"** 의 형태로 전송되게 된다.
 서버에서는 토큰은 유효성을 분석하여 상태를 반환하고 유효한 토큰일 경우에는 jwtTokenUtil.validateToken 메소드를 통해 페이지 http에 대한 request / response를
@@ -300,14 +303,14 @@ POST : http://localhost:8080/authenticate
 }
 ```
 
-* Response
+* Response(성공 / 실패)
 ```json
-* 성공
 {
   "token": "eyJhbGciOiJIUzUxMiJ9.eyJleHAiOjE2MjUyNjMyNDksImlhdCI6MTYyNTI0NTI0OSwianRpIjoic3VwMmlzQGdtYWlsLmNvbSJ9.aC_kRlQrSDALt2gtwl2AXRWJRPMkGERDmvWRsAYZlx0FFBb_UGurlHSYPf7Z7RS_BvAn_mq9rgd6GHBi7UXIpA"
 }
+```
 
-* 실패
+```json
 {
   "timestamp": "2021-07-02T17:05:10.510+0000",
   "status": 401,
@@ -316,9 +319,12 @@ POST : http://localhost:8080/authenticate
   "path": "/authenticate"
 }
 ```
+
 ---
+
 ### 4. UnAuthorized 처리
 1. WebSecurityConfig를 구현하여 개발자가 원하는 웹 보안 수준을 설정한다.
+
 ```java
 @Configuration
 @EnableWebSecurity
@@ -403,7 +409,7 @@ GET : http://localhost:8080/hello
 ```
 
 * Return
-```json
+```
 Hello World
 ```
 
@@ -428,6 +434,8 @@ dependencies {
 }
 
 ```
+### MyCode
+[JWT Token Repo](https://github.com/KIM-JS-95/FreeNote)
 
 ### 🧾Reference
 1. [JSON 웹 토큰](https://ko.wikipedia.org/wiki/JSON_%EC%9B%B9_%ED%86%A0%ED%81%B0)
