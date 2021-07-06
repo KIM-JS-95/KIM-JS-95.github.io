@@ -1,0 +1,176 @@
+---
+layout: post
+title:  "암호화"
+date:   2021-07-06 17:05:21 +0800
+tags: Security SpringBoot Encode
+color: rgb(154,133,255)
+cover: '../assets/profile.jpeg'
+subtitle: 'Springboot Encode'
+---
+
+## 암호화(Encode)
+
+웹 서비스 개발에 대해 유저의 정보를 안전하게 저장하기 위해서는 정보를 있는 그대로 저장하기보다 암호화를 통해 복잡한 문자열로 보관하는 방식이 더욱 안전할 것이다.
+Spring Security 5.3.3 버전에서는 비밀번호 암호화 인터페이스인 PasswordEncoder와 구현체를 지원함으로서 정보의 안전정을 강화 시켰다.
+Spring Security에는 4가지의 기본 암호화 클래스를 제공하고 있다.
+
+> * BcryptPasswordEncoder : BCrypt 해시 함수
+> * Argon2PasswordEncoder : Argon2 해시 함수
+> * Pbkdf2PasswordEncoder : PBKDF2 해시 함수
+> * SCryptPasswordEncoder : SCrypt 해시 함수
+
+저장된 암호는 복호화가 불가능한 단방향 암호코드로 만들어져야 하며 사용자를 제외한 모든 접근자가 접근할 수 없는 형태여야한다.
+동시에 해커가 예측할 수 없도록 *Salt 처리*를 해주어야 한다.
+
+> Salt 처리
+>
+> 데이터, 비밀번호, 통과암호를 해시 처리하는 단방향 함수의 추가 입력으로 사용되는 랜덤 데이터이다.
+> 솔트는 스토리지에서 비밀번호를 보호하기 위해 사용된다.
+> 역사적으로 비밀번호는 시스템에 평문으로 저장되지만 시간이 지남에 따라 추가적인 보호 방법이 개발되어
+> 시스템으로부터 사용자의 비밀번호 읽기를 보호한다.
+
+> 단방향 암호화 코드
+>
+> 복호화가 불가능한 암호로 Hash 알고리즘을 기반으로 암호화가 된다.
+>
+> 종류 : MD5, SHA-1, SHA-2등
+
+
+### DB 암호화 vs Spring Security 암호화
+
+
+개발 코드 상의 복잡함을 줄이기 위한 목적으로 DB 자체에서 지원하는 암호화를 지정하는 경우가 있지만 만일 DB Framework 가 바뀌는 경우 복잡한 암호화 프로세스를 다시 설정해주어야 한다.
+
+복잡한 코드를 감수하면서까지도 스프링 시큐리티를 사용하여 암호화 된 정보를 DB에 저장하기 이전에 Spring을 통해 암호화를 진행시켜 준다면
+이런 복잡한 암호화 단계를 개발영역에서 진행하겠지만 *확장성*과 *유지*의 측면에서는 이익을 볼 수 있다. 
+
+
+### 구성
+ 4가지 암호화 방식에 대해 같은 문자를 입력할 경우 각각의 암호화 방식이 어떻게 표현되는지 확인한다.
+
+#### build.Gradle
+```
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+
+    compile('com.h2database:h2')
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+}
+```
+
+#### WebSecurityConfig.class
+```java
+@Configuration
+@EnableWebSecurity
+public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+
+    // 사용자가 원하는 암호화 종류 지정 가능
+    
+    @Bean
+    public PasswordEncoder getPasswordEncoder() {
+        return new Pbkdf2PasswordEncoder();
+    }
+
+//    @Bean
+//    public PasswordEncoder getPasswordEncoder() {
+//        return new BCryptPasswordEncoder();
+//    }
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http
+                .cors().disable()      // cors 비활성화
+                .csrf().disable()      // csrf 비활성화
+                .formLogin().disable() //기본 로그인 페이지 없애기
+                .headers().frameOptions().disable();
+    }
+}
+```
+웹 페이지로부터 접근을 설정하는 단계로 설정하고자 하는 암호화 종류를 지정할 수 있다.
+
+
+#### Controller.class
+````java
+@RestController
+@Slf4j
+@RequiredArgsConstructor
+public class Controller {
+
+    @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
+    final PasswordEncoder passwordEncoder;
+
+
+    @PostMapping("/api/member")
+    public String saveMember(@RequestBody User memberDto) {
+        String password=passwordEncoder.encode(memberDto.getPassword());
+        userRepository.save(User.createUser(memberDto.getId(), password));
+        return password;
+    }
+}
+````
+
+```json
+{
+    "id" : "sup2is@gmail.com",
+    "password" : "user"
+}
+```
+
+localhost:8080/h2-console 에 저장되는 데이터 확인
+
+|idx|id|password|
+|:---:|:---:|:---:|
+|1|sup2is@gmail.com	|548552419d883daeecaefaa17349d75d712c07120e87d4c219399e71e662da65cc916e9799873bdb|
+
+---
+
+#### ControllerTest.class
+```java
+@RunWith(SpringRunner.class)
+public class ControllerTest {
+
+    @Test
+    public void BCryptPasswordEncoder() {
+        // pw 강도 설정 가능 현재 16
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(16);
+        String result = encoder.encode("user");
+
+        System.out.println("BCryptPasswordEncoder : " + result);
+        assertTrue(encoder.matches("user", result));
+    }
+    
+
+    @Test
+    public void Pbkdf2PasswordEncoder() {
+        Pbkdf2PasswordEncoder encoder = new Pbkdf2PasswordEncoder();
+        String result = encoder.encode("user");
+
+        System.out.println("Pbkdf2PasswordEncoder : " + result);
+        assertTrue(encoder.matches("user", result));
+    }
+    
+}
+```
+> 결과
+> 1. Pbkdf2PasswordEncoder : dc0f4ee26f083b6e4e429043878439c79de286ba1a7a488f8ae4a738f9ed19dd7a5ea42343baf071
+> 
+> 2. BCryptPasswordEncoder : $2a$16$h08nnXUcMctpWGZ9Wkkw8ey7zGTgSsmDkEyb7Omia2GZwFN8nM4xm
+
+
+앞서 Spring 에서는 4가지의 암호화 방식이 존재한다고 했지만 테스트 중에 가능한 암호화는 2가지 였다. 
+
+
+### 🧾Reference
+1. [PasswordEncoder란?](https://velog.io/@corgi/Spring-Security-PasswordEncoder%EB%9E%80-4kkyw8gi#argon2passwordencoder)
+2. [단방향 암호화](https://koonsland.tistory.com/3)
