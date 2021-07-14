@@ -4,7 +4,6 @@ title:  "암호화"
 date:   2021-07-06 17:05:21 +0800
 tags: Security SpringBoot Encode
 color: rgb(154,133,255)
-cover: ''
 subtitle: 'Springboot Encode'
 ---
 

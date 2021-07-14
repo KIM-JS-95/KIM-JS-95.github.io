@@ -4,7 +4,6 @@ title:  "최소신장트리 알고리즘"
 date:   2021-07-07 12:05:21 +0800
 tags: Algorithm Java
 color: rgb(98,170,255)
-cover: ''
 subtitle: 'MST_Algorithm'
 ---
 

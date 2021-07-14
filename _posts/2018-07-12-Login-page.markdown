@@ -60,14 +60,92 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 주제에 따라 로그인 페이지에 관한 HttpSecurity 메소드에 관해서만 다룬다.
 
-### HttpSecurity
+### HttpSecurity 메소드
+A HttpSecurity는 네임스페이스 구성에서 Spring Security의 XML <http> 요소와 유사합니다. 
+특정 http 요청에 대해 웹 기반 보안을 구성할 수 있습니다. 기본적으로 모든 요청에 적용되지만 requestMatcher(RequestMatcher)또는 기타 유사한 방법을 사용하여 제한할 수 있습니다 .
+
+```java
+   protected void configure(HttpSecurity http) throws Exception {
+        http.authorizeRequests()
+                .antMatchers("/", "/login", "/registration", "/h2/**").permitAll()
+                .antMatchers("/home/admin").hasAuthority(ERole.ADMIN.getValue())
+                .antMatchers("/home/user").hasAuthority(ERole.MANAGER.getValue())
+                .antMatchers("/home/guest").hasAuthority(ERole.GUEST.getValue())
+                .anyRequest().authenticated()
+                
+        .and()
+                .csrf()
+                .disable()
+                .headers()
+                .frameOptions().disable()
+                
+        .and()
+                .formLogin()
+                .loginPage("/login")
+                .defaultSuccessUrl("/home")
+                .failureUrl("/login?error=true")
+                .successHandler(successHandler())
+                .failureHandler(failureHandler())
+                .usernameParameter("username")
+                .passwordParameter("password")
+                
+        .and()
+                .logout()
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .logoutSuccessUrl("/login")
+                .and()
+                .exceptionHandling()
+                .accessDeniedPage("/access-denied");
+    }
+```
+
+#### antMatchers()
+ant경로를 기반으로 URL 경로를 선택하여 이어지는 명령어에 따라 *.permitAll()* / *hasAutority()* etc... 접근 권한을 부여한다.
+   
+
+> ant 경로 패턴
+>
+> 3가지(?, * , **) 특수문자로 경로를 표시하는 패턴 
+>
+> 1. * : 0개 또는 그 이상의 문자와 매치
+> 2. ** : 0개 또는 그 이상의 디렉토리와 매치
+> 3. ? : 1개 이상의 글자
+> 
+> 예시)
+>
+> 1. "/member/?*.jsp" -> /member/로 시작하고 확장자가 .jsp 로 끝나는 모든 경로
+> 
+> 2. "/abc/d? fg.hi" -> /abc/d 로 시작하고 1글자가 사이에 위치하고 fg.hi로 끝나는 모든 경로
+> 
+> 3. "/folder/**/files" -> /folder/로 시작하고 중간에 0개 이상의 중간 경로가 존재하고 /files 로 끝나는 모든 경로
+
+#### .formLogin()
+비설정 *.disable()* 시 스프링에서 기본 제공하는 페이지를 사용하게 되며 *.loginPage()* 를 설정하게 되면 사용자가 제작하거나 
+원하는 페이지의 로그인 form을 사용 할 수 있게 된다.
+   
+동시에 성공 / 실패 에 따라 페이지를 구분하거나 *successHandler() / failureHandler()* 를 설정하여 이동할 수 있도록 가능하며 원하는 추가적인 기능을 구현이 
+가능하다.
+
+*.usernameParameter("email")* 의 경우는 html 파일에서 설정한 파라메터 name="email" 을 사용함을 명시해주는 역할이다.
+
+
+#### csrf(Cross site request forgery)
+웹 사이트의 취약점을 이용하여 이용자가 의도하지 하지 않은 요청을 통한 공격을 의미하며
+http 통신의 Stateless(비상태저장) 특성을 이용하여 쿠키 정보만 이용해서 사용자가 의도하지 않은 다양한 공격들을 시도할 수 있다.
+
+이러한 특성을 차단하기위해  CSRF Token 정보를 Header 정보에 포함하여 서버 요청을 시도하는 방법을 사용할 수 있다.
+
+> 자세한 사용법은 다음 블로그에서 확인할 것
+> [Cross site request forgery](https://cheese10yun.github.io/spring-csrf/)
+
 
 ### 정리
 
 ### 🧾Reference
 > 로그인 구성과 보안 학습 자료 제공에 정말 큰 도움이 되었습니다. 감사합니다.
 
-1. [로그인 페이지 만들기](https://u2ful.tistory.com/)
+1. [Blog by "u2ful"](https://u2ful.tistory.com/)
+2. [클래스 HttpSecurity](https://docs.spring.io/spring-security/site/docs/4.2.x/apidocs/org/springframework/security/config/annotation/web/builders/HttpSecurity.html)
 
 
 
