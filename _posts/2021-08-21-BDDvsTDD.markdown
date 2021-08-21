@@ -1,0 +1,101 @@
+---
+layout: post
+title:  "BDD vs TDD"
+date:   2021-08-21 14:05:21 +0800
+tags: SpringBoot UnitTest, Mockito, BDDMockito 
+color:  rgb(154,133,255)
+subtitle: 유닛테스트 방법
+---
+### TDD ?
+
+```java
+public class Calculator {
+    public int plus(int a, int b) {
+        return a + b;
+    };
+}
+
+public class CalculatorTest {
+    Calculaotr calc = new Calculator();
+
+    @Test
+    void plus() {
+        int a = 10;
+        int b = 20;
+        int result = calc.plus(a, b);
+
+        assertEquals(result, a + b);
+    }
+}
+```
+
+
+### BDD(Behavior Driven Development) ? 
+
+어플리케이션 행동에 기반하여 *공통된 이해를 구성하는 방법이다.*
+
+그리고 BDD는 TDD를 수행하려는 어떠한 행동과 기능을 개발자가 더 이해하기 쉽게하는 것이 목적이다.
+
+시라리오 형식으로 테스트를 주도하는 방식인 만큼 **Given / When / Then** 3가지로 구성하여 테스트한다.
+
+- **Given**
+  - 테스트를 위해 주어진 상태
+  - 테스트 대상에게 주어진 조건
+  - 테스트가 동작하기 위해 주어진 환경
+  
+- **When**
+    - 테스트 대상에게 가해진 어떠한 상태
+    - 테스트 대상에게 주어진 어떠한 조건
+    - 테스트 대상의 상태를 변경시키기 위한 환경
+    
+- **Then**
+  - 앞선 과정의 결과
+
+#### 예제
+```java
+public class Calculator {
+    public int plus(int a, int b) {
+        return a + b;
+    };
+}
+
+public class CalculatorTest {
+    Calculaotr calc = new Calculator();
+
+    @Test
+    void plus() {
+        // given
+        int a = 10;
+        int b = 20;
+
+        // when
+        int result = calc.plus(a, b);
+
+        // then
+        assertEquals(result, a + b);
+    }
+}
+```
+
+
+### BDD vs TDD
+|이름|Based|핵심|라이브러리|
+|:---:|:---:|:---:|:---:|
+|TDD|시나리오 기반|테스트 주도|JUnit5, Mockito|
+|BDD|행동기반|자연어와 유사하게|BDDMockito|
+
+
+### 후기
+개인 프로젝트를 진행해 오면서 테스트 코드를 작성하는 습관을 가지려 노력했다. 작성중 이 글을 쓰게 된것은
+
+verify(), assertThat() 메소드가 서로다른 라이브러리에 존재한다는 것을 확인했고 혹시 BDDMockito와 Mockito 프레임워크에 대해 
+정리가 필요한 부분이었다. 
+
+TDD와 BDD
+
+![](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbDCXms%2Fbtq3gjpHufE%2FPJteGo9PBMHYudkWYer9E1%2Fimg.png)
+
+
+### 🧾Reference
+1. [1](https://wonit.tistory.com/493)
+2. [2](http://tcpschool.com/jquery/jq_ajax_method)
