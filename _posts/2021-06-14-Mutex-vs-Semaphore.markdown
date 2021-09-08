@@ -73,3 +73,6 @@ Mutex 와 Semaphore 는 공유 자원에 접근하는 것을 제어하기 위한
 ### 🧾 Reference
 * [Mutex와 Semaphore 란?](https://artwook.tistory.com/17)
 * [Semaphore](https://ko.wikipedia.org/wiki/%EC%84%B8%EB%A7%88%ED%8F%AC%EC%96%B4)
+
+
+[!방송](https://assets5.lottiefiles.com/packages/lf20_htdu8sub.json)
