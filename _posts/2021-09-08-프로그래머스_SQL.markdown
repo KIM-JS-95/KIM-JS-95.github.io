@@ -8,10 +8,134 @@ subtitle: '문제 풀이'
 ---
 
 ## 프로그래머스 SQL 문제 풀이
+
 ### 🐹 SELECT
 
+#### 모든 레코드 조회하기
+
+<details>
+<summary>문제 링크 및 답</summary>
+<div markdown="1">
+
+말이 필요없는 문제
+
+[모든 레코드 조회하기](https://programmers.co.kr/learn/courses/30/lessons/59034)
+
+```mysql-sql
+SELECT * from ANIMAL_INS;
+```
+
+</div>
+</details>
+
+#### 역순 정렬하기
+
+<details>
+<summary>문제 링크 및 답</summary>
+<div markdown="1">
+
+
+
+[역순 정렬하기](https://programmers.co.kr/learn/courses/30/lessons/59035)
+
+정렬 명령문 `ORDER BY`를 적용하는 문제이며 정렬 방법은 크게 오름차순 `ASC` 와  내림차순 `DESC`로 나뉜다. 
+
+```mysql-sql
+SELECT NAME, DATETIME FROM ANIMAL_INS  ORDER BY ANIMAL_ID DESC;
+```
+
+</div>
+</details>
+
+#### 아픈 동물 찾기
+
+<details>
+<summary>문제 링크 및 답</summary>
+<div markdown="1">
+
+특정 데이터를 조회하는 방법으로 `WHERE`절을 사용한다. 
+
+[아픈동물 찾기](https://programmers.co.kr/learn/courses/30/lessons/59036)
+
+```mysql-sql
+SELECT ANIMAL_ID, NAME FROM ANIMAL_INS WHERE INTAKE_CONDITION='Sick';
+```
+
+</div>
+</details>
+
+#### 어린 동물 찾기
+
+<details>
+<summary>문제 링크 및 답</summary>
+<div markdown="1">
+
+특정 데이터를 조회하는 방법은 `!=` 부호를 사용하면 특정 데이터를 제외한 나머지 데이터를 조회할 수 있다.
+
+[어린 동물 찾기](https://programmers.co.kr/learn/courses/30/lessons/59037)
+
+```mysql-sql
+SELECT ANIMAL_ID, NAME from ANIMAL_INS where INTAKE_CONDITION !='Aged' ;
+```
+
+</div>
+</details>
+
+#### 동물의 아이디와 이름
+
+<details>
+<summary>문제 링크 및 답</summary>
+<div markdown="1">
+
+[동물의 아이디와 이름](https://programmers.co.kr/learn/courses/30/lessons/59403)
+
+```mysql-sql
+SELECT ANIMAL_ID, NAME FROM ANIMAL_INS ORDER BY ANIMAL_ID ASC;
+```
+
+</div>
+</details>
+
+#### 여러 기준으로 정렬하기
+
+<details>
+<summary>문제 링크 및 답</summary>
+<div markdown="1">
+
+두 열의 데이터 정렬기준으로 서로 다르게 할 경우는 별개의 데이터 정렬 방식을 정의 해주면 된다.
+
+` ORDER BY "1번 정렬",  "2번 정렬" `
+
+[여러기준으로 정렬하기](https://programmers.co.kr/learn/courses/30/lessons/59404)
+
+
+```mysql-sql
+SELECT ANIMAL_ID,NAME,DATETIME from ANIMAL_INS order by NAME asc, DATETIME DESC;
+```
+
+</div>
+</details>
+
+#### 상위 N개 레코드
+
+<details>
+<summary>문제 링크 및 답</summary>
+<div markdown="1">
+
+정렬된 데이터를 위에서 혹은 아래서 N개의 데이터를 조회하고 싶은 경우는 어떠할까?
+`LIMIT` 명령어는 사용자가 원하는 데이터의 개수를 입력하면 위에서부터 데이터를 조회할 수 있도록 해준다. 
+
+[상위 N 개 레코드](https://programmers.co.kr/learn/courses/30/lessons/59405)
+
+```mysql-sql
+SELECT NAME FROM ANIMAL_INS ORDER BY DATETIME ASC LIMIT 1;
+```
+
+</div>
+</details>
 
 ### 🐹 SUM, MAX, MIN
+
 #### 최댓값 구하기
 
 <details>
@@ -113,6 +237,7 @@ SELECT COUNT(DISTINCT NAME) FROM ANIMAL_INS WHERE NAME IS NOT NULL;
 
 
 ### 🐹 GROUP BY
+
 #### 고양이와 개는 몇 마리 있을까?
 
 <details>
@@ -160,7 +285,6 @@ ORDER BY NAME;
 
 </div>
 </details>
-
 
 #### 입양 시각 구하기(1)
 
@@ -256,6 +380,7 @@ SET 문이나 UPDATE 문의 SET 절 이외에서 사용되면, 왼쪽 피연산�
 
 </div>
 </details>
+
 
 ### 🐹 IS NULL
 
