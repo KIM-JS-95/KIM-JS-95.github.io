@@ -30,3 +30,12 @@ subtitle: '패스트 캠퍼스 스프링 강의'
 
 
 ### 2. What is AOP ??
+
+#### AOP(Aspect Oriented Programming) : 관점지향 프로그램
+
+스프링 어플리케이션은 대부분 특별한 경우를 제외하고 MVC 웹 어플리케이션에서는 `Wec Layer`, `Business Layer`, `Data Layer`으로 정의
+
+AOP는 관심사가 동일한 기능들을 분리하자 라는 목표를 가지고 있다.
+
+
+

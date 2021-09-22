@@ -235,7 +235,6 @@ SELECT COUNT(DISTINCT NAME) FROM ANIMAL_INS WHERE NAME IS NOT NULL;
 </div>
 </details>
 
-
 ### 🐹 GROUP BY
 
 #### 고양이와 개는 몇 마리 있을까?
@@ -381,8 +380,82 @@ SET 문이나 UPDATE 문의 SET 절 이외에서 사용되면, 왼쪽 피연산�
 </div>
 </details>
 
-
 ### 🐹 IS NULL
+
+#### 이름이 없는 동물의 아이디
+
+<details>
+<summary>문제 링크 및 답</summary>
+<div markdown="1">
+
+[이름이 없는 동물의 아이디](https://programmers.co.kr/learn/courses/30/lessons/59039)
+
+전체 테이블을 조회 후 조건절에 `null` 값을 초회 해주면 되겠다. 
+
+단, 조건절에서 `==` 등호는 사용할 수 없으니 반드시 `IS` 명령어를 사용해야한다.
+
+```mysql-sql
+SELECT ANIMAL_ID from ANIMAL_INS WHERE NAME IS NULL;
+```
+
+</div>
+</details>
+
+
+#### 이름이 있는 동물의 아이디
+
+<details>
+<summary>문제 링크 및 답</summary>
+<div markdown="1">
+
+[이름이 있는 동물의 아이디](https://programmers.co.kr/learn/courses/30/lessons/59407)
+
+그렇다면 반대로 이름을 조회할 경우는 어떻게 구현할까?
+
+`IS` 명령어가 `WHERE` 절에서 `==` 와 같은 의미라면 
+
+`IS NOT`은 `!=` 와 같은 의미 입니다.
+
+
+```mysql-sql
+SELECT ANIMAL_ID from ANIMAL_INS WHERE NAME IS NOT NULL;
+```
+
+</div>
+</details>
+
+#### NULL 처리하기
+
+<details>
+<summary>문제 링크 및 답</summary>
+<div markdown="1">
+
+[NULL 처리하기](https://programmers.co.kr/learn/courses/30/lessons/59410)
+
+테이블의 일부 데이터가 `NULL` 값인 경우 그 의미를 모르는 사용자 들에게 `No name` 을 반환 하도록 구현하려한다.
+
+우선 `NULL` 값을 조회하는 쿼리를 작성 후 생각해보자.
+
+```mysql-sql
+SELECT ANIMAL_TYPE FROM ANIMAL_INS WHERE NAME IS NULL;
+```
+
+그 후, 출력 부분인 `SELECT` 부분을 통해 **해당 값이 `NULL` 일 경우 "NO name"으로 출력** 되도록 조건절을 주어야 한다.
+
+여기서 `IFNULL` 명령어를 사용하면 되겠다. 동시에 `WHERE`문은 필요가 없으니 지워주도록 한다.
+
+```mysql-sql
+SELECT ANIMAL_TYPE, ifNULL(NAME, "No name") FROM ANIMAL_INS;
+```
+
+마지막으로 원하는 테이블을 출력할 수 있도록 구현해주면 된다.
+
+```mysql-sql
+SELECT ANIMAL_TYPE, IFNULL(NAME, "No name") AS NAME, SEX_UPON_INTAKE FROM ANIMAL_INS;
+```
+
+</div>
+</details>
 
 ### 🐹 JOIN
 
