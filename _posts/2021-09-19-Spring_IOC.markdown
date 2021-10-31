@@ -1,6 +1,7 @@
 ---
-layout: post title: "Spring IOC"
-date: 2021-09-19 
+layout: post 
+title: "Spring IOC"
+date: 2021-09-19
 tags: Spring IOC 패스트캠퍼스
 color: rgb(255,90,90)
 author: KIM-JS-95 

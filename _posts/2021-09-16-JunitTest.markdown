@@ -1,5 +1,6 @@
 ---
-layout: post title: "2021-09-16-CODE-REVIEW"
+layout: post 
+title: "2021-09-16-CODE-REVIEW"
 date: 2021-09-17
 tags: Self-CodeReview @MockBean(JpaMetamodelMappingContext.class)
 color: rgb(255,90,90)

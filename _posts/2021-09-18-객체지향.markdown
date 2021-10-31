@@ -1,5 +1,6 @@
 ---
-layout: post title: "객체지향 이론"
+layout: post 
+title: "객체지향 이론"
 date: 2021-09-17 
 tags: 객체지향 패스트캠퍼스
 color: rgb(255,90,90)
