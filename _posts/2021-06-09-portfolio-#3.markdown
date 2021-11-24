@@ -1,0 +1,114 @@
+---
+layout: post
+title: "게임후기 게시판"
+date: 2021-11-24
+author: KIM-JS-95
+color: rgb(255,210,32)
+tags: AWS YOUTUBE GAMEREVIEW PORTFOLIO
+subtitle: '유튜브 구독자를 위한 게임 플레이 후기 게시판 제작'
+---
+
+# PORTFOLIO(#3)
+
+<div align="center" style='letter-spacing:10px'>
+
+## QR Code
+
+<img src="https://user-images.githubusercontent.com/65659478/143237888-f14d9579-439a-4b84-bf0f-f68223552e45.png" width="200" height="200"/>
+
+## www.cutlinepage.ml:8081
+
+---
+
+## SKILL
+<br>
+<img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=HTML5&logoColor=white"/></a>
+<img src="https://img.shields.io/badge/JAVASCRIPT-F7DF1E?style=for-the-badge&logo=JAVASCRIPT&logoColor=white"/></a>
+
+<img src="https://img.shields.io/badge/JENKINS-D24939?style=for-the-badge&logo=JENKINS&logoColor=white"/></a>
+<img src="https://img.shields.io/badge/docker-2496ED?style=for-the-badge&logo=DOCKER&logoColor=white"/></a>
+<img src="https://img.shields.io/badge/AWS-232F3E?style=for-the-badge&logo=AMAZONAWS&logoColor=white"/></a>
+<img src="https://img.shields.io/badge/GRADLE-02303A?style=for-the-badge&logo=GRADLE&logoColor=white"/></a>
+<img src="https://img.shields.io/badge/SPRINGBOOT-6DB33F?style=for-the-badge&logo=SPRINGBOOT&logoColor=white"/></a>
+</div>
+<br>
+
+---
+
+## INTRO
+
+유튜브 채널을 운영하고 여러 게임을 촬영하면서 플레이 영상은 남길 수 있지만 나의 생각을 남기고 싶었다.
+
+물론, 이미 해외의 큰 규모의 구독자를 가진 유튜버는 개인 사이트를 운영하여 후기를 남기곤 하지만 
+한국의 많은 유튜버는 영상으로서 마무리하거나 Naver Cafe 혹은 Twitch 게시판에 남기는 정도이다.
+
+이번 프로젝트의 목적은 
+포털 사이트에서 제공되고 있는 Cafe, Blog 를 벤치마킹하여 개발 구성 부터 인프라까지 구축하고 관리하는 단계까지 
+개발의 모든 단계를 이해하는데 의의가 있다.
+<br>
+
+---
+
+<br>
+
+![제목을-입력해주세요_-001 (1)](https://user-images.githubusercontent.com/65659478/143247907-2e7992d2-62db-4935-a7d0-87b87b9a27b5.png)
+
+
+## Development process
+
+### 1. 페이지 구성
+페이지는 사용자의 접근성(입력과 읽기) , 보안을 집중하여 구현하였다. 또한 개인 블로그 형식이기 때문에 UI는 심플하게 구성하였으며 운영 초기이니 만큼 많은 기능을
+구성하지는 않았다.
+
+게시판은 CRUD에 집중하여 구성하였으며 추가적으로 `검색기능`과 `페이징 기능`을 추가하여 게시판의 높은 완성도를 구현하였다.
+
+
+### 2. Spring Security
+
+Spring Security의 경우 이번 프로젝트를 통해 사용해보는 Skill이며 프로젝트를 시작하게된 계기이다.
+Spring Security는 강력하고 고도로 사용자 정의 가능한 인증 및 액세스 제어 프레임워크로 Spring 기반 애플리케이션을 보호하기 위한 사실상의 표준이다.
+
+``` text
+1. 인증 및 권한 부여 모두에 대한 포괄적이고 확장 가능한 지원
+
+2. 세션 고정, 클릭재킹, 사이트 간 요청 위조 등의 공격으로부터 보호
+
+3. 서블릿 API 통합
+
+4. Spring Web MVC와의 선택적 통합
+```
+
+개방된 게시판인 만큼 구독자 제한으로 글을 작성할 수 있도록 `가입 코드`를 제한적으로 제공하여 가입 할 수 있도록 하였다.
+
+```
+관리자 - ADMIN (게시판 관리 / 작성 / 읽기 권한)
+구독자 - USER (게시판 작성 / 읽기 권한)
+게스트 - GUEST (게시판 읽기 권한)
+```
+
+### 3. 인프라 구성
+
+이전 [EC2-STATION] 프로젝트 에서는 `AWS && TRAVIS`를 사용한 배포 방식을 했지만, 많은 기업에서 적용하는 인프라 방식을 벤치 마킹하여
+`AWS && Docker && Jenkins` 배포 방식을 시도해 보았다.
+
+처음 사용해보는 프로그램으로 기본적인 사용방법과 개념을 이해하고 구성하는 단계까지 3주의 기간이 소모되었다.
+
+TARAVIS 와 JENKINS 를 비교하자면 JENKINS는 인프라를 구성하는데 있어서 웹을 통해 편리하게 구성할 수 있도록 서비스가 제공되어져 있었고 
+개발자의 수요가 높은 만큼 사용방법에 대한 정보를 쉽게 찾을 수 있었다.
+
+### 후기
+
+프로젝트를 많이 시도하는 배울 수 있다는 느낌을 얻었다. 
+
+이 프로젝트는 취준기간의 <u>정신적 압박을 이겨내기 위해</u> 취미로 시작한 유튜브 채널관리에서 대형 해외 유튜버가 채널을 운영하는 방식에서 영감을 받아 
+인디 개발자의 게임을 플레이 후 후기를 작성하고 많은 사람들에게 정보를 주는 사이트를 만들게 되었다.
+
+즉, 취미와 직업기술의 융합으로 볼 수 있다.
+
+덕분에 많은 기술과 접할 수 없었던 버그, 인프라에 대해 개념적으로 적립할 수 있었던 계기가 되었다.
+
+### Develop period
+
+* 개발 : 2021.9.28 ~ 2021.11.23
+* 관리 : 2021.11.23 ~
+
