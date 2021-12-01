@@ -30,8 +30,21 @@ subtitle: 'Start Docker'
 > * debian은 docker에서 제공하는 image의 이름
 
 
-> UFS(Union File System)
-> 여러개의 파일 시스템을 겁칠 수 있도록 해줌 반대로 사용자에게는 하나의 파일 시스템 처럼 보이게 된다.
+### 다중 컨테이너 App 공유 - Docker-compose
+
+nginx 다중포트를 사용하는 경우나 App 사용을 위해 여러개의 환경을 구성해야하는 경우
+```text
+Docker run -d -p 8081:8080
+Docker run -d -p 8082:8080
+```
+하여 구성할 수 있지만 이 경우는 개별 관리로 관리자의 운영이 어려워진다.
+
+그러나 Docker-compose 를 구성하면 일렬의 작업을 동시에 해낼 수 있다. 
+`Docker-compose`는 다수의 container를 자동으로 실행하기 위한 툴로 YAML 파일을 사용하여 APP을 구성할 수 있다.
+
+
+
+### 이미지 자동 빌드를 위한 - Dockerfile
 
 
 
