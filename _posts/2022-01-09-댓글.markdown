@@ -1,0 +1,14 @@
+---
+layout: post
+title: "댓글 기능 추가"
+date: 2021-01-09
+tags: Self-CodeReview
+color: rgb(255,90,90)
+author: KIM-JS-95
+subtitle: 'CutLinePage를 업데이트 하자!'
+---
+
+# 목표
+나의 포트폴리오 게임 페이지는 배포까지의 
+### My GitHub link
+[해당 프로젝트 링크](https://github.com/KIM-JS-95/CutLinePages)
