@@ -1,0 +1,263 @@
+---
+layout: post
+title: "게임 페이지 최적화"
+date: 2021-01-09
+tags: Self-CodeReview
+color: rgb(255,90,90)
+author: KIM-JS-95
+subtitle: 'CutLinePage를 업데이트 하자!'
+---
+
+# 목표
+나의 포트폴리오 게임 페이지는 배포까지의 괴정을 완료한 프로젝트이다.
+
+그러나 지속적인 최적화 그리고 기능 추가를 위해 지속적 관리를 이어가고 있다.
+
+현재는 그렇기 않지만 DB 모델링의 문제로 추후 Delay 현상이 발생한 문제가 있었다.
+
+때문에 DB 모델링을 개성하기 위해 단일 객체 테이블 방식에서 다대일 방식을 적용하여 
+게시판 Table 과 댓글 Table 을 Mapping 하는 것을 목표로 한다.
+
+## Before
+A. Account(사용자) Table
+```java
+public class Account {
+
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private Long id;
+
+    @Column(nullable = false)
+    @NotBlank
+    private String usercode;
+
+    @Column(nullable = false)
+    @NotBlank
+    @Length(min = 4)
+    private String username;
+
+    @Column(nullable = false)
+    @NotBlank
+    @Length(min = 4)
+    private String password;
+
+    @Transient
+    @NotBlank
+    private String confirmPassword;
+
+    @Column(nullable = false)
+    @NotBlank
+    @Email
+    private String email;
+
+    @Column(nullable = false)
+    private Boolean isActive;
+
+    @CreationTimestamp
+    private Date regDate;
+
+    @ManyToMany(cascade = CascadeType.MERGE)
+    @JoinTable(name = "user_role",
+            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
+    private Set<Role> roles;
+
+}
+```
+B. Gallary(게시판) Table
+
+```java
+public class Gallary extends TimeEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private Long id;
+
+
+    @NotBlank
+    @Column(length =1000, nullable = false)
+    private String title;
+
+    @Column(columnDefinition = "TEXT", nullable = false)
+    private String content;
+
+    @NotBlank
+    private String username;
+    
+}
+```
+
+위 스크립트에서 두 테이블 사이에는 어떠한 연관 관계도 없었다. 
+
+때문에 게시판 호출시 `작성자` 명시할 경우 두 테이블을 같이 불러와야했다.
+
+이 경우 스크립트가 지저분하거나 DB 이상현상에 노출될 문제가 있다.  
+
+때문에 이를 `@ManytoOne`으로 연관시키며 반대로 `Account` 테이블에서 접근 할 수 있도록 `양방향`으로 할 것이다.  
+
+## After
+
+
+```java
+public class Account {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private Long id;
+
+    @Column(nullable = false)
+    @NotBlank
+    private String usercode;
+
+    @Column(nullable = false)
+    @NotBlank
+    @Length(min = 4)
+    private String username;
+
+    @Column(nullable = false)
+    @NotBlank
+    @Length(min = 4)
+    private String password;
+
+    @Transient
+    @NotBlank
+    private String confirmPassword;
+
+    @Column(nullable = false)
+    @NotBlank
+    @Email
+    private String email;
+
+    @Column(nullable = false)
+    private Boolean isActive;
+
+
+    @OneToMany(mappedBy = "account", cascade = CascadeType.ALL)
+    private List<Gallary> gallaries = new ArrayList<>();
+
+
+    @OneToMany(mappedBy = "account", cascade = CascadeType.ALL)
+    private List<Review> reviews = new ArrayList<>();
+
+
+    @ManyToMany(cascade = CascadeType.MERGE)
+    @JoinTable(name = "user_role",
+            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
+    private Set<Role> roles;
+
+
+    public void addGallary(Gallary gallary){
+        this.gallaries.add(gallary);
+
+        if(gallary.getAccount() != this){
+            gallary.setAccount(this);
+        }
+    }
+}
+```
+
+B. Gallary(게시판) Table
+
+```java
+public class Gallary extends TimeEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private Long id;
+
+    private int count;
+
+    @NotBlank
+    @Column(length =1000, nullable = false)
+    private String title;
+
+    @NotBlank
+    @Column(columnDefinition = "TEXT", nullable = false)
+    private String content;
+
+    @NotNull
+    private String link;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ACCOUNT_ID")
+    private Account account;
+
+    @OneToMany(mappedBy = "gallary",cascade = CascadeType.ALL)
+    private List<GallaryReply> gallaryReply = new ArrayList<>();
+
+    public void setAccount(Account account){
+        this.account=account;
+
+        if(!account.getGallaries().contains(this)){
+            account.getGallaries().add(this);
+        }
+    }
+}
+
+```
+
+양방향 다대일 매핑 구성 후 `@Service` class의 로직이 조금더 단순화 되었다.
+
+
+JPA 특성상 두 테이블의 데이터를 연관 시키기 위해서는 기존에 데이터 row가 존재해야하며 
+이후 도메인에 PK를 넣어주어 JOIN 시켜주어야한다.
+
+이럴 경우 
+
+`Account`와 `Gallary` 데이터를 수집 -> 개별 저장 -> 호출 -> 양방향 JOIN 과정을 지나야했다.
+(2번의 set(`Account`, `Gallary`)을 해야함)
+
+그러나 수집 후 JOIN 과정시 아래 스크립트를 구성하게 되면 한번의 Set 으로 매핑을 구성할 수 있다.
+
+
+```java
+
+ 1. Account.class
+ 
+    public void addGallary(Gallary gallary){
+        this.gallaries.add(gallary);
+
+        if(gallary.getAccount() != this){
+        gallary.setAccount(this);
+        }
+   }
+        
+ 2. gallary.class
+ 
+    public void setAccount(Account account){
+        this.account=account;
+
+        if(!account.getGallaries().contains(this)){
+            account.getGallaries().add(this);
+        }
+    }
+```
+
+## 호출은?
+
+테이블 설정시 호출 방식에 따라 지연(Lazy)와 즉시(Eager)으로 구분할 수 있다.
+
+1. Lazy (지연로딩) 
+
+호출된 테이블이 호출되는 과정에서 DB 컨텍스트에 저장하는 과정을 지나게되는데 이때 사용자가 호출한 부분만을 
+꺼내오고 매핑되어있는 테이블은 호출되지 않는다. (컨텍스트에는 저장되어 있다.)
+ 
+이후 호출되지 않는 테이블에 접근 할 때 컨텍스트에서 다시 호출(프록시 : 가짜 객체)하여 사용하는 방식으로 
+다대일 테이블의 경우 호출되는 쿼리의 양이 막대해 지면서 로직에 이상현상이 발생할 수 있으며 유지 보수에도 문제가 발생 할 수 있다.
+
+2. Eager (즉시로딩)
+
+반대로 DB컨텍스트에 저장되긴 하지만 접근시 호출되는것이 아닌 연관된 테이블이 모두 호출되는 명령어이다.  
+JOIN 호출시 1:5 테이블의 경우 5번의 조인쿼리를 발생시켜 DB 로직에 문제를 가져올 수 있다.
+
+(ex. N+1 에러)
+
+
+해당 테이블은 `지연로딩`을 적용하여 필요시 프록시를 호출하는 방법을 사용했다.
+물론 Get방식으로 접근하여 사용할 수 있다.
+
+
+### My GitHub link
+[해당 프로젝트 링크](https://github.com/KIM-JS-95/CutLinePages)
