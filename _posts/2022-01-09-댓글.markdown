@@ -8,18 +8,54 @@ author: KIM-JS-95
 subtitle: 'CutLinePage를 업데이트 하자!'
 ---
 
-# 목표
+## 목표
 나의 포트폴리오 게임 페이지는 배포까지의 괴정을 완료한 프로젝트이다.
 
 그러나 지속적인 최적화 그리고 기능 추가를 위해 지속적 관리를 이어가고 있다.
 
-게시판 기능의 완전한 기능을 을 구현하고자 추가적으로 Reply(댓글)기능을 추가 한다.
+게시판 기능의 완전한 기능을 구현하고자 추가적으로 Reply(댓글)기능을 추가 한다.
+
+## 구성
+### Table 추가
+댓글 기능의 경우 게시판 하나당 댓글정보는 여러개가 연결되기 때문에 `@OnetoMany` 양방향 매핑츨 시켜주어 사용하기로 한다.
+
+추가적으로 게시판이 삭제될 경우 매핑되어 있는 댓글 또한 같이 지워질 수 있도록 `cascade`를 All로 지정하여 별도 삭제 기능 추가 없이
+작업이 이루어 질 수 있도록 한다.
+
+단, 추후 Account와 매핑할 경우 `cascade` 기능을 사용하지 않고 **고아 객체**로 만들어 두어야한다.
 
 
+```java
+@OneToMany(mappedBy = "gallary",cascade = CascadeType.ALL)
+    private List<GallaryReply> gallaryReply = new ArrayList<>();
+```
+
+당연히데이터 입력 후 추가적으로 PK를 입력하여 JOIN 처리를 해주어야 한다.
+
+```java
+  public void setGallary(Gallary gallary){
+        this.gallary=gallary;
+
+        if(!gallary.getGallaryReply().contains(this)){
+            gallary.getGallaryReply().add(this);
+        }
+    }
+```
+
+## FE 페이지 구성
+
+`Contents`와 `댓글`을 사용자가 쉽게 볼 수 있도록 오른편에 구성하여 페이지의 허전함을 개선하였다.
+
+![제목 없음](https://user-images.githubusercontent.com/65659478/148678245-dbdb6802-ae00-40e5-b74e-927949005e08.png)
 
 
-### 관련 포스팅
-Table 매핑 update
-[](https://kim-js-95.github.io/2021/12/06/kadane's_Algorithm.html)
-### My GitHub link
-[해당 프로젝트 링크](https://github.com/KIM-JS-95/CutLinePages)
+## 개선사항
+1. `Account` 와 매핑하여 입력하는 사용자의 닉네임이 입력 후 노출 될 수 있도록 구성한다.
+2.  로그인 상태의 경우에만 보일 수 있도록 타입리프를 구성한다. 
+3. 이미지에 관한 개선은 AWS 버킷과 연동해야한다. 이 부분은 학습이 필요.
+
+## 관련 포스팅
+* [엔티티 매핑 최적화](https://kim-js-95.github.io/2022/01/09/%EA%B0%9D%EC%B2%B4-%EB%A7%A4%ED%95%91.html)
+
+## My GitHub link
+* [해당 프로젝트 링크](https://github.com/KIM-JS-95/CutLinePages)

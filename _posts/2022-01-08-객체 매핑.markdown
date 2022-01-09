@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "게임 페이지 최적화"
+title: "엔티티 매핑 최적화"
 date: 2022-01-09 14:05:21 +0800
 tags: Self-CodeReview
 color: rgb(255,90,90)
@@ -259,7 +259,7 @@ JOIN 호출시 1:5 테이블의 경우 5번의 조인쿼리를 발생시켜 DB �
 물론 Get방식으로 접근하여 사용할 수 있다.
 
 ### 관련 포스팅
-[](https://kim-js-95.github.io/2021/12/06/kadane's_Algorithm.html)
+* [댓글 기능 추가](https://kim-js-95.github.io/2022/01/10/%EB%8C%93%EA%B8%80.html)
 
 ### My GitHub link
-[해당 프로젝트 링크](https://github.com/KIM-JS-95/CutLinePages)
+* [해당 프로젝트 링크](https://github.com/KIM-JS-95/CutLinePages)
