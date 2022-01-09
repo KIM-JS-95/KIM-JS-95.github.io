@@ -1,7 +1,11 @@
 ---
-layout: post title: "2021-06-12-CODE-REVIEW"
-date: 2021-07-17 tags: Self-CodeReview color: rgb(255,90,90)
-author: KIM-JS-95 subtitle: '2021-07-17-Self Code REVIEW'
+layout: post 
+title: "2021-06-12-CODE-REVIEW"
+date: 2021-07-17 
+tags: Self-CodeReview 
+color: rgb(255,90,90)
+author: KIM-JS-95 
+subtitle: '2021-07-17-Self Code REVIEW'
 ---
 
 # CODE-REVIEW

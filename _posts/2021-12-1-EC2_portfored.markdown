@@ -4,7 +4,7 @@ title:  "제작한 웹 페이지 포트 포워딩 하기"
 date:   2021-12-1 14:05:21 +0800
 tags: EC2 PORT_FORWARDING 
 color: rgb(255,90,90)
-cover: '../assets/profile.jpeg'
+cover: ''
 subtitle: '포트포워딩 시키기'
 ---
 
