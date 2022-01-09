@@ -17,5 +17,9 @@ subtitle: 'CutLinePage를 업데이트 하자!'
 
 
 
+
+### 관련 포스팅
+Table 매핑 update
+<
 ### My GitHub link
 [해당 프로젝트 링크](https://github.com/KIM-JS-95/CutLinePages)
