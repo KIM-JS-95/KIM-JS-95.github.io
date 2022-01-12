@@ -63,6 +63,7 @@ subtitle: '유튜브 구독자를 위한 게임 플레이 후기 게시판 제�
 
 게시판은 CRUD에 집중하여 구성하였으며 추가적으로 `검색기능`과 `페이징 기능`을 추가하여 게시판의 높은 완성도를 구현하였다.
 
+![3](https://user-images.githubusercontent.com/65659478/149054013-8021c9a2-61eb-4e1d-979c-14d60b84c660.png)
 
 ### 2. Spring Security
 

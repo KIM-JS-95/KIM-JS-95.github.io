@@ -42,17 +42,48 @@ subtitle: 'CutLinePage를 업데이트 하자!'
     }
 ```
 
+![3](https://user-images.githubusercontent.com/65659478/149054013-8021c9a2-61eb-4e1d-979c-14d60b84c660.png)
+
+### 댓글 닉네임과 Comment 호출
+댓글이라면 익명 댓글 보다는 닉네임 댓글을 사용하는 것이 모두를 위해 좋다고 생각했다.
+
+이전에 매핑시켜놓은 테이블중 `Reply테이블`에서 `Account` 컬럼에 pk를 입력시켜주고 타입리프를 통해 호출해 주면 될것이다.
+
+#### * 추가
+각 테이블에 속해 있는 댓글을 출력하기 위해 아래와 같이 `gallary.getGallaryReply()`로 수정한다.
+```java
+
+    // 게시판 상세 내용 출력
+    @GetMapping("/gallary/view/{id}")
+    private String find(@PathVariable("id") Long index, Model model) {
+        Gallary gallary = gallaryService.findIndex(index).orElseThrow(()
+                -> new IllegalArgumentException("error"));
+        
+
+        model.addAttribute("details", gallary);
+        
+        
+        * model.addAttribute("replys", gallary.getGallaryReply());
+
+        return "home/gallary/gallarydetail";
+    }
+    
+```
+
+
 ## FE 페이지 구성
 
 `Contents`와 `댓글`을 사용자가 쉽게 볼 수 있도록 오른편에 구성하여 페이지의 허전함을 개선하였다.
-
+그러나 댓글의 `닉네임`을 노출시기는 것이 좋다 생각했다.
 ![제목 없음](https://user-images.githubusercontent.com/65659478/148678245-dbdb6802-ae00-40e5-b74e-927949005e08.png)
 
+### -> 댓글 닉네임 개선 후
+![2](https://user-images.githubusercontent.com/65659478/149053650-de567e42-ec7d-4f1c-bad0-f0c27c7dbdf5.png)
 
 ## 개선사항
-1. `Account` 와 매핑하여 입력하는 사용자의 닉네임이 입력 후 노출 될 수 있도록 구성한다.
-2.  로그인 상태의 경우에만 보일 수 있도록 타입리프를 구성한다. 
-3. 이미지에 관한 개선은 AWS 버킷과 연동해야한다. 이 부분은 학습이 필요.
+1.로그인 상태의 경우에만 보일 수 있도록 타입리프를 구성한다. 
+2.이미지에 관한 개선은 AWS 버킷과 연동해야한다. 이 부분은 학습이 필요.
+
 
 ## 관련 포스팅
 * [엔티티 매핑 최적화](https://kim-js-95.github.io/2022/01/09/%EA%B0%9D%EC%B2%B4-%EB%A7%A4%ED%95%91.html)
