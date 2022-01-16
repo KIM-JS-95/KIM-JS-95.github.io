@@ -1,6 +1,6 @@
 ---
 layout: post 
-title:  "kadane's_Algorithm"
+title:  "Kadane's_Algorithm"
 date:   2021-12-06 12:05:21 +0800 
 tags: ALGORITHM
 color: rgb(154,133,255)
