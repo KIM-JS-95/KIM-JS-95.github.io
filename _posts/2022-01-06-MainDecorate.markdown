@@ -48,7 +48,11 @@ Spring을 사용하지 않고 Js / CSS / HTML으로 만들었다.
 
 ## 관련 포스팅
 * [YouTube crawling](https://chulkang.tistory.com/65)
+* [YouTube-API](https://developers.google.com/youtube/player_parameters?hl=ko#Manual_IFrame_Embeds)
 * [엔티티 매핑 최적화](https://kim-js-95.github.io/2022/01/09/%EA%B0%9D%EC%B2%B4-%EB%A7%A4%ED%95%91.html)
 * [이미지 슬라이드는 요기서 확인](http://kenwheeler.github.io/slick/)
+
+
+
 ## My GitHub link
 * [해당 프로젝트 링크](https://github.com/KIM-JS-95/CutLinePages)
