@@ -11,7 +11,7 @@ subtitle: 'CutLinePage를 업데이트 하자!'
 ## 목표
 ![main](https://user-images.githubusercontent.com/65659478/149650552-d1e7f3e1-8ddf-4c00-b0c5-7f03e6b4ed0d.png)
 
-메인화면을 보자 하니...
+🤔🤔 메인화면을 보자 하니... 🤔🤔
 
 굉장히 허전하다. 게다가 저 화면 링크는 어떠한 기능도 없는 장식이다.
 
@@ -44,9 +44,17 @@ Spring을 사용하지 않고 Js / CSS / HTML으로 만들었다.
 
 ## 내 채널 유튜브 영상 크롤링
 
+🤔🤔 동영상을 어떻게 가져올까 ... 🤔🤔
 
+초기 영상의 경우 크롤링을 통해 영상 전부 획득이 가능할까? 쉽지많은 않은 듯 하다.
+
+사실 영상 전부를 가져오기보다 최근에 없로드 된 영상 몇개만 필요할 뿐이라서...
+
+고민을 하다가 `Mysql`에 유튜브 URL을 저장해서 불러오는 방법은 어떨까 생각했다. 영상의 주소는 모두 저장되지만 상위 3개만을 가져와서
+화면에 영상으로 띄어주면 되지 않을까? 생각한다.
 
 ## 관련 포스팅
+
 * [YouTube crawling](https://chulkang.tistory.com/65)
 * [YouTube-API](https://developers.google.com/youtube/player_parameters?hl=ko#Manual_IFrame_Embeds)
 * [엔티티 매핑 최적화](https://kim-js-95.github.io/2022/01/09/%EA%B0%9D%EC%B2%B4-%EB%A7%A4%ED%95%91.html)
