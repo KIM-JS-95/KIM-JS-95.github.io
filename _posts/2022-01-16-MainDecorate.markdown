@@ -53,6 +53,16 @@ Spring을 사용하지 않고 Js / CSS / HTML으로 만들었다.
 고민을 하다가 `Mysql`에 유튜브 URL을 저장해서 불러오는 방법은 어떨까 생각했다. 영상의 주소는 모두 저장되지만 상위 3개만을 가져와서
 화면에 영상으로 띄어주면 되지 않을까? 생각한다.
 
+자! `YouTube 공식 API`를 사용해서 내 채널 영상정보를 가져온 데이터이다.
+
+![1](https://user-images.githubusercontent.com/65659478/149764685-29247257-f1ac-47b2-bb39-12837b1dd499.png)
+
+ <h1><center>  🤔🤔🤔🤔🤔🤔 </center> </h1>
+
+생각해보니 썸네일까지 주소를 가져와 DB에 저장하면 이미지 슬라이드에 적용할 수 있는거 아님?
+
+
+
 ## 관련 포스팅
 
 * [YouTube crawling](https://chulkang.tistory.com/65)
