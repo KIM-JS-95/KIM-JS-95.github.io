@@ -91,6 +91,54 @@ public class Main {
 }
 ```
 
+모르겠다. 🤔🤔🤔
+
+조금더 대표적인 문제를 살펴보자
+
+#### Letter Combinations of a Phone Number
+LeetCode에 존재하는 백트래킹문제이다.
+
+숫자를 입력하여 조합할 수 있는 모든 경우의 문장을 확인하는 문제이다.
+많은 풀이 방법이 있지만 재귀를 사용한 DFS 풀이방식을 많이 사용한다.
+
+
+```java
+class Solution {
+    HashMap<Integer,String> map;
+    private void solve(int i,String s,String digits,List<String> list){
+        if(i==digits.length()){
+            list.add(s);
+            return;
+        }
+        
+        int digit=(digits.charAt(i))-'0';
+        String values=map.get(digit);
+        
+        for(int j=0;j<values.length();j++){
+            solve(i+1,s+values.charAt(j),digits,list);
+        }
+        
+    }
+    public List<String> letterCombinations(String digits) {
+        if(digits.length()==0) return new ArrayList<String>();
+        map=new HashMap<>();
+        map.put(2,"abc");
+        map.put(3,"def");
+        map.put(4,"ghi");
+        map.put(5,"jkl");
+        map.put(6,"mno");
+        map.put(7,"pqrs");
+        map.put(8,"tuv");
+        map.put(9,"wxyz");
+        List<String> list=new ArrayList<>();
+        solve(0,"",digits,list);
+        return list;
+    }
+}
+```
+
+
+[문제링크](https://leetcode.com/problems/letter-combinations-of-a-phone-number/)
 
 ## 관련 포스팅 (LeetCode)
 * [범범스의 코딩놀이터](https://bumbums.tistory.com/3)
