@@ -7,14 +7,7 @@ color: rgb(154,133,255)
 subtitle:
 --- 
 
-## 서론?
 
-2022년 1월 27일 우연한 기회로 `티아이스퀘어` 기업 면접을 보게되었다
-이전 서류 준비과정에서 둘려본 바로는 `WebRTC`와 `MCPTT` 기술을 메인으로 사용하는 것을 보았다.
-
-기술면접에 대비하여 `WebRTC` 기술을 알아보고 면접을 준비하려 한다.
-
-`MCPTT`는 LET 기반 긴급통신 서비스라는 정도만 알고가려한다.
 
 
 ### WebRTC(Web Real Time Communication)
@@ -35,20 +28,20 @@ WebSocket의 상위 기술이 WebRTC 이며 기존의 `WebSocket`은 서버를 �
 
 
 #### WebSocket 통신방식
-<center>
+
 
 ![](https://www.baeldung.com/wp-content/uploads/2019/12/webrtc-2-1.png)
 
 ![](https://www.baeldung.com/wp-content/uploads/2019/12/webrtc-2-2.png)
 
-</center>
+
 
 #### WebRTC 통신방식
-<center>
+
 
 ![](https://www.baeldung.com/wp-content/uploads/2019/12/webrtc-2-3.png)
 
-</center>
+
 
 ### WebRTC 서버 종류
 ![](https://millo-l.github.io/static/017a91d3df72ed6117dcdb47fab3c810/1c1a4/webrtc-server.png)
