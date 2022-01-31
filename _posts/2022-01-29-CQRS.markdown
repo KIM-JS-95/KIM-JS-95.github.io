@@ -1,0 +1,58 @@
+---
+layout: post
+title:  "CQRS 패텬"
+date:   2022-01-29 12:05:21 +0800
+tags: 면접
+color: rgb(154,133,255)
+subtitle: 기술면접
+--- 
+
+### 기존의 아키텍쳐
+![](https://user-images.githubusercontent.com/42582516/103001594-b0cfe380-4570-11eb-8166-ab5f026e534a.png)
+
+전통적인 CRUD 아키텍처 기반에서 Application을 개발 및 운영하다가 보면, 
+자연스럽게 Domain Model의 복잡도가 증가하고 그에 따라 유지보수의 비용이 증가하고 Domain model은 설계의 방향과 다르게 변질된다.
+
+이러한 복잡성 속에서 개선할 수 있는 방향은 <u>데이터 흐름의 역할을 분리</u>하는 방법이었다.
+
+### CQRS(Command Query Responsibility Segregation)
+
+`명령 조회 책임 분리`의 의미를 가진 CQRS는 애플리케이션을 구성하는 하나의 아키텍쳐 패턴으로
+정리하면 `명령`과 `쿼리` 역할의 분리를 의미한다.
+> Command (Create, Insert, Update, Delete)와 쿼리(Select - Read)의 책임을 분리
+
+CQRS는 총 3가지 방식으로 나뉘어 질 수 있다.
+
+#### 🍔 Simple 방식
+![](https://user-images.githubusercontent.com/42582516/103002233-df9a8980-4571-11eb-9156-a6d3675bc07b.png)
+
+Database(RDBMS) 는 분리하지 않고 기존 구조 그대로 유지 시키고 
+Model Layer 부분만 `Command`와 `Query Model`로 분리하는 수준으로 간단하게 적용할 수 있다.
+이렇게 분리된 Model은 각자의 Domain Layer에 대해서 만 모델링하고 코딩하기 때문에 훨씬 단순하게 구현/적용 할 수 있다.
+<u>하지만 동일 Database사용에 따른 성능상 문제점은 개선하지 못한다.</u>
+
+#### 🍔 Premier 방식 (폴리글랏 방식)
+![ㄴㅇ](http://www.popit.kr/wp-content/uploads/2016/09/CQRS3-364x600.png)
+
+`Command용 Database`와 `Query용 Database`를 분리하고 별도의 Broker를 통해서 이 둘 간의 Data를 동기화 처리 하는 방식이다. 
+데이터를 조회 하려는 대상 시스템들은 각자 자신의 시스템에 맞는 저장소를 선택 할 수 있기에 폴리글랏 저장 구조 로 구성 할 수 도 있다.
+이 경우 각각의 Model에 맞게 저장소(RDBMS, NoSql, Cache)를 튜닝하여 사용할 수 있다는 이점이 있고 
+이는 <u>Simple 방식에서 거론된 동일 Database사용에 따른 성능 관점의 문제점을 해결 할 수 도 있다.</u>
+하지만 동기화 처리를 위한 Broker의 가용성과 신뢰도가 보장되어야 하는 리스크가 존재한다.
+
+#### 🍔 EventSourcing 방식
+![](https://media.vlpt.us/images/sloools/post/a72ca4bb-03d0-4730-a2af-9e841c7fba73/image.png)
+
+이벤트 소싱이란 Application내의 모든 Activity를 이벤트로 전환해서 이벤트 스트림을 별도의 Database에 저장하는 방식을 말한다.
+
+
+### 정리
+
+|장점|단점|
+|:---:|:---:|
+|도메인의 목적에 맞게 집중하여 개발할 수 있다.|구현해야할 코드가 많아진다.|
+|`명령`과 `쿼리로직`을 원하는 방향으로 최적화해도 다른 요소에 문제가 생기지 않는다.|더 많은 `기술`과 `유지보수`를 필요로한다.|
+
+
+
+### 🧾Reference
