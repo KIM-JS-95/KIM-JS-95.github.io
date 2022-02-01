@@ -2,9 +2,9 @@
 layout: post
 title:  "WebRTC vs WebSocket"
 date:   2022-01-26 12:05:21 +0800
-tags: SPRING
+tags: Interview
 color: rgb(154,133,255)
-subtitle:
+subtitle: "기술면접"
 --- 
 
 

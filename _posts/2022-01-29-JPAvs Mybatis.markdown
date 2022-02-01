@@ -2,7 +2,7 @@
 layout: post
 title:  "JPA vs Mybatis 차이"
 date:   2022-01-29 12:05:21 +0800
-tags: SPRING 면접
+tags: Spring Interview
 color: rgb(154,133,255)
 subtitle: 기술면접
 --- 

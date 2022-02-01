@@ -1,27 +1,25 @@
 ---
 layout: post
-title:  "드디어 도착했다! Spring Cloud"
+title:  "Spring Swagger"
 date:   2022-01-31 12:05:21 +0800
 tags: Spring-Cloud
 color: rgb(154,133,255)
-subtitle: 서비스 기업의 기본 소양
+subtitle: API 문서 개발을 편리하게
 --- 
 
-## 🚀 Spring Cloud 서론
+## 🚀 What is Swagger?
 
-### Cloud project Setting
+Swagger를 사용하면 기계가 읽을 수 있도록 API의 구조를 설명할 수 있다.
+정리하자면 우리가 별도로 `UI`를 HTML 파일로 제작하지 않아도 `Swegger` 에서 필요한 문서 형태를 모두 제공하고 결과값 또한 보여주는 툴이다.
 
-#### Swagger 설정
+[Swgger 공식 홈페이지](https://swagger.io/docs/specification/2-0/what-is-swagger/)
 
-  - 프로젝트 강의를 듣게되면서 `Swegger`툴을 사용하게되었다.
-  > What is Swegger?
-  >
-  > Swagger를 사용하면 기계가 읽을 수 있도록 API의 구조를 설명할 수 있다.
-  > 
-  > [Swgger 공식 홈페이지](https://swagger.io/docs/specification/2-0/what-is-swagger/)
 
-정리하자면 우리가 별도로 `ui`를 HTML 파일로 제작하지 않아도 `Swegger` 에서 필요한 ui를 모두 제공하고
-결과값 또한 보여주는 툴이다.
+### 프로젝트 예시
+
+`Spring Cloud` 프로젝트에 들어가기전에 `API문서`를 별도로 만들 필요없이 빠른 개발 할 수 있도록 도와주는 툴을 설정한다.
+
+#### Controller 구현
 
 ```java
 @Api
@@ -47,8 +45,14 @@ public class FileUploadController {
 
 ```
 
+|어노테이션|설명|
+|:---:|:---:|
+|@Api|클래스를 Swagger 리소스 대상으로 표시|
+|@ApiOperation|요청 URL 에 매핑된 API 에 대한 설명|
+|@ApiParam|요청 Parameter에 대한 설명 및 필수여부, 예제값 설정|
+|@ApiResponse|응답에 대한 설명|
 
-#### Config
+#### Swagger Config
 
 `Swagger`을 사용하기 위해서는 기본 설정을 필요로한다.
 
@@ -100,7 +104,10 @@ public class SwaggerConfig {
 - [Swagger Editor](https://editor.swagger.io/)
 
 
+### 정리
+`Swagger`는 API를 구현을 도와주는 `Tool`일 뿐이며 필요할때 문서를 찾아서 구현하면 되겠다. 
 
+<u>시간내서 공부할 필요성은 없다는 것이다.</u>
 
 ### 🧾Reference
 [Spring Cloud](https://www.baeldung.com/spring-cloud-configuration)

@@ -80,14 +80,14 @@
   <!-- 页面宽度小于800px -->
   <div class="post-changearea">
     {% if page.next.url %}
-      <a href="{{ page.next.url }}" class="leftchange" style="border-right: 1px solid {{ page.color }};border-bottom: 2px solid {{ page.color }};"><span>上一篇<br><br>{{ page.next.title }}</span></a>
+      <a href="{{ page.next.url }}" class="leftchange" style="border-right: 1px solid {{ page.color }};border-bottom: 2px solid {{ page.color }};"><span>🌠다음 포스팅🌠<br><br>{{ page.next.title }}</span></a>
     {% else %}
-      <a href="javascript:;" class="leftchange" style="border-right: 1px solid {{ page.color }};border-bottom: 2px solid {{ page.color }};"><span><br>没有上一篇咯</span></a>
+      <a href="javascript:;" class="leftchange" style="border-right: 1px solid {{ page.color }};border-bottom: 2px solid {{ page.color }};"><span><br>❄최신 포스팅❄</span></a>
     {% endif %}
     {% if page.previous.url %}
-      <a href="{{ page.previous.url }}" class="rightchange" style="border-left: 1px solid {{ page.color }};border-bottom: 2px solid {{ page.color }};"><span>下一篇<br><br>{{ page.previous.title }}</span></a>
+      <a href="{{ page.previous.url }}" class="rightchange" style="border-left: 1px solid {{ page.color }};border-bottom: 2px solid {{ page.color }};"><span>☄이전 포스팅☄<br><br>{{ page.previous.title }}</span></a>
     {% else %}
-      <a href="javascript:;" class="rightchange" style="border-left: 1px solid {{ page.color }};border-bottom: 2px solid {{ page.color }};"><span><br>没有下一篇咯</span></a>
+      <a href="javascript:;" class="rightchange" style="border-left: 1px solid {{ page.color }};border-bottom: 2px solid {{ page.color }};"><span><br>❄마지막 포스팅❄</span></a>
     {% endif %}
   </div>
 </div>
