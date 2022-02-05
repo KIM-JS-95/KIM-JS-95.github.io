@@ -9,95 +9,28 @@ subtitle: 서비스 기업의 기본 소양
 
 ## 🚀 Spring Cloud 서론
 
-### Cloud project Setting
+```text
 
-#### Swagger 설정
+Spring Cloud is a framework for building robust cloud applications. The framework facilitates the development of applications by providing solutions to many of the common problems faced when moving to a distributed environment.
 
-  - 프로젝트 강의를 듣게되면서 `Swegger`툴을 사용하게되었다.
-  > What is Swegger?
-  >
-  > Swagger를 사용하면 기계가 읽을 수 있도록 API의 구조를 설명할 수 있다.
-  > 
-  > [Swgger 공식 홈페이지](https://swagger.io/docs/specification/2-0/what-is-swagger/)
+Applications that run with microservices architecture aim to simplify development, deployment, and maintenance. The decomposed nature of the application allows developers to focus on one problem at a time. Improvements can be introduced without impacting other parts of a system.
 
-정리하자면 우리가 별도로 `ui`를 HTML 파일로 제작하지 않아도 `Swegger` 에서 필요한 ui를 모두 제공하고
-결과값 또한 보여주는 툴이다.
+On the other hand, different challenges arise when we take on a microservice approach:
 
-```java
-@Api
-@RestController
-public class FileUploadController {
+Externalizing configuration so that is flexible and does not require rebuild of the service on change
+Service discovery
+Hiding complexity of services deployed on different hosts
+In this article, we'll build five microservices: a configuration server, a discovery server, a gateway server, a book service, and finally a rating service. These five microservices form a solid base application to begin cloud development and address the aforementioned challenges.
 
-    @Autowired
-    FileUploadService fileUploadService;
 
-    @ApiOperation("이미지 파일 업로드")
-    @PostMapping("/v1.0/upload/image")
-    public ImageFileUploadResult transfer(
-            @RequestParam("userKey") String userKey,
-            @RequestPart("imageFile") MultipartFile multipartFile) {
-        ImageFile imageFile = fileUploadService.upload(multipartFile);
-        return ImageFileUploadResult.builder()
-                .fileName(imageFile.getFileName())
-                .fileId(imageFile.getFileId())
-                .fileSize(imageFile.getFileSize())
-                .build();
-    }
-}
-
+ - Baeldung 발췌 -
 ```
+정리하자면 Spring Cloud는 클라우드 어플리케이션 구축 프레임 워크이며 
+서비스 개발의 규모가 거대해지면서 각 서비스를 분산적으로 구축 및 개발 관리하는데 이를 `MSA(Micro Service Architecture)`라고한다.
 
+서비스 역할 단위로 구분하여 개발하지만 서비스 이용시 하나의 서비스처럼 묶어 줄 수 있는 도구가 필요한데 여기서 등장하는 것이 `Spring Cloud`이다. 
 
-#### Config
-
-`Swagger`을 사용하기 위해서는 기본 설정을 필요로한다.
-
-- 참조
-  - [Swagger Documentation](https://swagger.io/docs/open-source-tools/swagger-ui/usage/configuration/?sbsearch=.defaultModelExpandDepth)
-
-```java
-@Configuration
-@EnableSwagger2
-public class SwaggerConfig {
-    @Bean
-    public UiConfiguration uiConfig() {
-        return UiConfigurationBuilder.builder()
-                .deepLinking(true)
-                .displayOperationId(false)
-                .defaultModelExpandDepth(3)
-                .defaultModelExpandDepth(3)
-                .docExpansion(DocExpansion.LIST)
-                .displayRequestDuration(false)
-                .supportedSubmitMethods(UiConfiguration.Constants.DEFAULT_SUBMIT_METHODS)
-                .validatorUrl(null)
-                .build();
-    }
-
-    @Bean
-    public Docket api() {
-        return new Docket(DocumentationType.SWAGGER_2)
-                .groupName("photo api")
-                .apiInfo(apiInfo())
-                .select()
-                .apis(RequestHandlerSelectors.withMethodAnnotation(ApiOperation.class))
-                .paths(PathSelectors.any())
-                .build();
-    }
-
-
-    private ApiInfo apiInfo() {
-        return new ApiInfoBuilder()
-                .title("photo upload api")
-                .description("사진 업로드 api")
-                .version("1.0.0")
-                .build();
-    }
-}
-
-```
-
-아래 페이지에서 사용자가 필요로 하는 설정을 구성 후 사용할 수 있다.
-- [Swagger Editor](https://editor.swagger.io/)
+#### Spring Cloud Gateway (SCG)
 
 
 
