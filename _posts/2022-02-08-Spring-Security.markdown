@@ -23,7 +23,7 @@ subtitle: Spring-Security CSRF
 ![](https://gitlab.com/jongwons.choi/spring-boot-security-lecture/-/raw/master/images/fig-3-authentication.png)
 
 
-#### 🍔 인증 토큰(Authentication)을 제공하는 필터들
+#### 🌠 인증 토큰(Authentication)을 제공하는 필터들
   - UsernamePasswordAuthenticationFilter : 폼 로그인 -> UsernamePasswordAuthenticationToken
   - RememberMeAuthenticationFilter : remember-me 쿠키 로그인 -> RememberMeAuthenticationToken
   - AnonymousAuthenticationFilter : 로그인하지 않았다는 것을 인증함 -> AnonymousAuthenticationToken
@@ -62,7 +62,7 @@ subtitle: Spring-Security CSRF
 </form>
 ```
 
-#### CSRF 방어?
+#### 🌠 CSRF 방어?
 
 > Our recommendation is to use CSRF protection for any request that could be processed by a browser by normal users. If you are only creating a service that is used by non-browser clients, you will likely want to disable CSRF protection.
 >
@@ -87,12 +87,51 @@ Rest API에서 토큰을 검색한 후에는 해당 토큰을 JS로 설정하여
 ```
 브라우저 스토리지(예: 세션 스토리리)에서 토큰을 유지할 수 있다.
 대표적으로 JWT를 사용하는 방법이 있다. 구현이 쉽고 코드가 브라우저 저장소에 접근하여 요청과 함께 토큰을 보낼 수 있다.
-
-
+그러나 XSS 공격에 취약하다.
 ```
 
 - 쿠키에 저장된 자격 증명
 
+```
+쿠기를 사용하여 자격 증명을 유지하는 방법으로 JWT와 같이 자격 증명만 유지할 수 있지만 사용자을 인증할 수는 없다.
+REST API의 헤더를 통해 자격 증명을 읽는 방법이며 `토큰`은 Client가 소유하게 된다.
+```
+
+### 🍕REST API로 CSRF 보호 활성화
+
+
+#### 🌠 Spring 구현
+
+프로젝트에 CSRF 보호가 필요한 경우 사용자 지정 `WebSecurityConfigurerAdapter` 에서
+`CookieCsrfTokenRepository` 를 사용하여 쿠키와 함께 CSRF 토큰을 보낼 수 있다 .
+
+```java
+@Configuration
+public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
+    @Override
+    public void configure(HttpSecurity http) throws Exception {
+        http
+           .csrf()
+                .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
+    }
+}
+```
+
+#### 🌠 Client 구성
+
+클라이언트 측 응용 프로그램에서 XSRF-TOKEN 쿠키는 첫 번째 API 액세스 후에 설정됩니다. JavaScript 정규식을 사용하여 검색할 수 있습니다.
+
+```java
+const csrfToken = document
+        .cookie
+        .replace(/(?:(?:^|.*;\s*)XSRF-TOKEN\s*\=\s*([^;]*).*$)|^.*$/, '$1');
+
+fetch(url, {
+method: 'POST',
+body: JSON.stringify({ /* data to send */ }),
+headers: { 'X-XSRF-TOKEN': csrfToken },
+})
+```
 
 ### 🍕 RoleHierarchy(권한계층)
 최상위 권한 소유자가 모든 페이지 접근을 허용하는 방법?
@@ -110,7 +149,7 @@ Rest API에서 토큰을 검색한 후에는 해당 토큰을 JS로 설정하여
     }
 ```
 
-### 🧾Reference
+### 🧾 Reference
 
 [CSRF](https://zzang9ha.tistory.com/341)
 
