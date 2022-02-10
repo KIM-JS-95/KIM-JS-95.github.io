@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "CQRS 패텬"
+title:  "CQRS 패턴"
 date:   2022-01-29 12:05:21 +0800
 tags: Interview
 color: rgb(154,133,255)
