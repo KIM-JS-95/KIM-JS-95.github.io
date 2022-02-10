@@ -7,11 +7,6 @@ color: rgb(154,133,255)
 subtitle: Spring-Security CSRF
 --- 
 
-## 🚀 서블릿 컨테이너
-
-![](https://gitlab.com/jongwons.choi/spring-boot-security-lecture/-/raw/master/images/fig-1-servlet-container.png)
-
-
 ## 🚀 스프링 시큐리티
 
 스프링 환경은 정책에 따른 여러 `Spring-Security`가 공존할 수 있어 필터 Filter- Chain에 적용할 경우 충돌 문제가 생긴다.
@@ -21,19 +16,6 @@ subtitle: Spring-Security CSRF
 ### 🍕 Authentication(인증)의 구조
 
 ![](https://gitlab.com/jongwons.choi/spring-boot-security-lecture/-/raw/master/images/fig-3-authentication.png)
-
-
-#### 🌠 인증 토큰(Authentication)을 제공하는 필터들
-  - UsernamePasswordAuthenticationFilter : 폼 로그인 -> UsernamePasswordAuthenticationToken
-  - RememberMeAuthenticationFilter : remember-me 쿠키 로그인 -> RememberMeAuthenticationToken
-  - AnonymousAuthenticationFilter : 로그인하지 않았다는 것을 인증함 -> AnonymousAuthenticationToken
-  - SecurityContextPersistenceFilter : 기존 로그인을 유지함(기본적으로 session 을 이용함)
-  - BearerTokenAuthenticationFilter : JWT 로그인
-  - BasicAuthenticationFilter : ajax 로그인 -> UsernamePasswordAuthenticationToken
-  - OAuth2LoginAuthenticationFilter : 소셜 로그인 -> OAuth2LoginAuthenticationToken, OAuth2AuthenticationToken
-  - OpenIDAuthenticationFilter : OpenID 로그인
-  - Saml2WebSsoAuthenticationFilter : SAML2 로그인
-  - ... 기타
 
 
 ### 🍕 CSRF(Cross-Site Request Forgery)
@@ -154,3 +136,5 @@ headers: { 'X-XSRF-TOKEN': csrfToken },
 [CSRF](https://zzang9ha.tistory.com/341)
 
 [Baeldung - CSRF With Stateless REST API](https://www.baeldung.com/csrf-stateless-rest-api)
+
+[Servlet](https://mangkyu.tistory.com/14)
