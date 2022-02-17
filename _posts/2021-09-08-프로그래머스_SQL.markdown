@@ -2,7 +2,7 @@
 layout: post
 title:  "프로그래머스 SQL 고득점 KIT 문제"
 date:   2021-09-08
-tags: SQL, MYSQL, Programmers
+tags: SQL Programmers
 color: rgb(154,133,255)
 subtitle: '문제 풀이'
 ---

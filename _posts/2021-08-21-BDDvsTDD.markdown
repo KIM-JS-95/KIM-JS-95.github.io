@@ -2,7 +2,7 @@
 layout: post
 title:  "BDD vs TDD"
 date:   2021-08-21 14:05:21 +0800
-tags: SpringBoot UnitTest, Mockito, BDDMockito 
+tags: SpringBoot UnitTest Mockito
 color:  rgb(154,133,255)
 subtitle: 유닛테스트 방법
 ---

@@ -2,7 +2,7 @@
 layout: post
 title:  "웹 서비스 확장 전략"
 date:   2022-01-31 12:05:21 +0800
-tags: SPRING-CLOUD
+tags: Spring-Cloud
 color: rgb(154,133,255)
 subtitle: 서비스 기업의 기본 소양
 --- 
