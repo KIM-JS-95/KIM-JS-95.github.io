@@ -113,7 +113,7 @@ private static int find(int x){
 
 ---
 ###  🙆‍♂ 예시 코드 링크
-* [Union-Find Algorithm](<script src="https://gist.github.com/KIM-JS-95/f1753e699e0e1cb653d0201b3dc7bf68.js"></script>)
+* [Union-Find Algorithm](https://gist.github.com/KIM-JS-95/f1753e699e0e1cb653d0201b3dc7bf68.js)
 * [Union-find Cycle Algorithm](<script src="https://gist.github.com/KIM-JS-95/f357596c9d9ef7943328bb0fb89e784f.js"></script>)
 * [Kruskal Algorithm](<script src="https://gist.github.com/KIM-JS-95/f5f328363608d7d05c23bff84f53cb3b.js"></script>)
 
