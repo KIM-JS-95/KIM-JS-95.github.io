@@ -6,13 +6,13 @@ tags: 기술면접 API
 color: rgb(154,133,255)
 subtitle: API의 개요
 --- 
-### 🚀 API(Application Programming Interface)
+## 🚀 API(Application Programming Interface)
 
 직역하자면 `응용 프로그래밍 명세서`이다.
 목적은 프로그램들 혹은 컴퓨터와 컴퓨터 사이의 상호작용하는 것을 도와주는 매개체이다.
 
 
-### 🚀 API는 어떻게 사용되어질까?
+## 🚀 API는 어떻게 사용되어질까?
 
 우리가 웹 개발을 진행하게되면 필요한 기능을 구현하게된다.
 가장 기본적인 `CRUD` 또한 API로 볼수 있다.  

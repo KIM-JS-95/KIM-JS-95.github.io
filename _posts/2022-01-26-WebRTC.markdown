@@ -8,8 +8,6 @@ subtitle: "기술면접"
 --- 
 
 
-
-
 ### WebRTC(Web Real Time Communication)
 이름 그대로 **웹 브러우저 간에** 플러그인 없이 통신 가능한 실시간 커뮤니티 서비스이며
 음성 / 영상 / p2p 파일공유 기능을 이용할 수 있다.
