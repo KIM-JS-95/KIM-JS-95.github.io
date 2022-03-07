@@ -7,8 +7,6 @@ color: rgb(154,133,255)
 subtitle: 기술면접
 --- 
 
-
-
 ### ORM (Object - Relational - Mapping)
 객체와 DB를 매핑하는 기술로 객체와 테이블을 <u>자동으로 매핑해서 패러다임의 불일치 문제를 자동으로 해결</u>해준다.
 SQL 중심의 매핑이 아닌 자바 클래스 위주의 매핑이다.
@@ -26,8 +24,8 @@ JPA와 Hibernate는 마치 자바의 `interface`와 해당 `interface를 구현�
 
 ### 🚀 JPA(Java Persistent API)
 
-JPA는 자바 진영의 ORM 기술 표준이며 `관계형 데이터베이스`와 `자바 객체`를 매핑하기 위한 `EntityManager` 인터페이스를 제공한다.
-
+JPA는 자바 진영의 ORM 기술 표준이며 `관계형 데이터베이스`와 `자바 객체`를 매핑하기 위한 `EntityManager` 
+인터페이스를 제공한다.
 
 #### 장점
 + CRUD 쿼리를 자동으로 생성해준다.
