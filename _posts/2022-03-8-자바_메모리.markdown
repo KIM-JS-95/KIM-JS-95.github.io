@@ -1,0 +1,47 @@
+---
+layout: post 
+title:  "자바가 메모리를 사용하는 방식"
+date:   2021-03-09 12:05:21 +0800 
+tags: 면접 자바
+color: rgb(98,170,255)
+subtitle: static / heap / stack 메모리 영역
+--- 
+
+# 🚀 프로그램이 메모리를 사용하는 방식
+
+![제목 없음](https://user-images.githubusercontent.com/65659478/157267971-53546cd6-8889-41c3-bf36-ea2821384140.png)
+
+하나의 프로그램이 실행될 때 프로그램이 메모리를 사용하는 방식이다.
+
+기계어를 포함한 모든 프로그래밍이 언어의 공통된 메모리 사용방식이며 `OOP`에서는 데이터 저장 영역을 다시 3개의 영역으로 나누어
+사용한다.
+
+## 🌠 main() 메소드 : 메소드 스택 프레임
+
+![개발과구동](https://user-images.githubusercontent.com/65659478/157253014-b6cd6aa2-9a2d-4765-9407-66731aa3958a.jpg)
+
+자바가 실행되면 `JRE`는 프로그램 내부의 `main()` 메소드의 유무를 확인하고 
+이어서 `JVM`이 역할을 이어 받아 전저리 과정을 이어간다.
+
+프로그램이 실행되면 `JVM`은 **실행에 필요한 패키지(ex. java.lang)**를 `Static 영역`에 저장한다.
+그리고 `JVM`은 개발자가 작성한 모든 `클래스`와 `임포트 패키지` 역시 `Static`영역에 저장한다.
+
+
+## 🌠 JDK(Java Development kit)
+
+### ☄ 자바 번역기 - 자바 컴파일러
+
+
+### ☄ 자바 바이트 코드
+
+
+## 🌠 JRE (JAVA Runtime Environment)
+
+
+### ☄ JRE 구성요소
+
+
+
+
+## 🧾 Reference
+- [책 - 스프링을 입문을 위한 자바 객체 지향의 원리와 이해](https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=55641908)
