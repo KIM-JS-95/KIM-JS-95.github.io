@@ -1,7 +1,7 @@
 ---
 layout: post 
 title:  "자바가 메모리를 사용하는 방식"
-date:   2021-03-09 12:05:21 +0800 
+date:   2022-03-09 12:05:21 +0800 
 tags: 면접 자바
 color: rgb(98,170,255)
 subtitle: static / heap / stack 메모리 영역
