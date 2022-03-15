@@ -46,4 +46,5 @@ subtitle:
 객체의 재사용은 코드 중복을 줄이고 , 효율성을 높이는데 의의가 있다.
 
 ### 🧾Reference
-[!ForkJoinPool](https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ForkJoinPool.html)
+
+- [!ForkJoinPool](https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ForkJoinPool.html)
