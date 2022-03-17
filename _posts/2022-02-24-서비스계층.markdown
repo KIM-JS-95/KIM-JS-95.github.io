@@ -9,8 +9,6 @@ subtitle: 서비스 계층이 뭐죠?
 
 ## Service Layer의 역할
 
-<귀염 뽕짝한 이미지>
-
 ![](https://miro.medium.com/max/1400/1*z0mVu3ELKPBZolOpAUFxWw.png)
 
 MVC 디자인 페턴에서 Model은 크게 `Service Layer`과 `Data Access Layer`로 구성된다.
@@ -80,8 +78,6 @@ MVC 디자인 페턴에서 Model은 크게 `Service Layer`과 `Data Access Layer
 
 
 ### 🧾Reference
-[Service Layer](https://goodteacher.tistory.com/252)
-
-[Transaction](https://liveyourit.tistory.com/238)
-
-[MangKyu's Diary](https://mangkyu.tistory.com/154 )
+- [Service Layer](https://goodteacher.tistory.com/252)
+- [Transaction](https://liveyourit.tistory.com/238)
+- [MangKyu's Diary](https://mangkyu.tistory.com/154)
