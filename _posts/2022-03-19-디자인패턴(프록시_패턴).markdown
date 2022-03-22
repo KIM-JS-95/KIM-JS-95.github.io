@@ -91,17 +91,6 @@ public class ClientWithProxy {
 - 대리자는 실제 서비스의 같은 이름을 가진 메서드를 호출하고, 그 값을 클라이언트에게 돌려준다.
 - 대리자는 실제 서비스의 메소드 호출 전후에 별도의 로직을 수행할 수도 있다.
 
-```
-![007](https://user-images.githubusercontent.com/65659478/159110349-6df3a0be-838b-40c4-b4c6-20a82e71bdef.jpg)
-![008](https://user-images.githubusercontent.com/65659478/159110351-b2b2daa1-f6d2-4a4e-9de9-9097beeaa76b.jpg)
-![009](https://user-images.githubusercontent.com/65659478/159110353-422bd362-3c74-4545-a92f-aba8234737ab.jpg)
-![010](https://user-images.githubusercontent.com/65659478/159110354-2467aee5-fc8d-4aa7-a82c-0548cd40796f.jpg)
-![011](https://user-images.githubusercontent.com/65659478/159110355-237bea74-c91f-40ef-a31a-dc89df4b633e.jpg)
-![012](https://user-images.githubusercontent.com/65659478/159110356-253d56ab-7a03-4150-ae3c-729f57711f67.jpg)
-![013](https://user-images.githubusercontent.com/65659478/159110357-ee670925-344e-4ed9-8277-9c795c24d7b2.jpg)
-![014](https://user-images.githubusercontent.com/65659478/159110358-2bf2894d-e2ed-4224-9afa-bbbfa764c327.jpg)
-
-```
 
 ## 🧾 Reference
 - [깃헙 - 스프링 입문 교재](https://github.com/expert0226/oopinspring)
