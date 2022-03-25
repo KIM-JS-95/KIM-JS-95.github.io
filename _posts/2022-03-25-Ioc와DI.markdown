@@ -1,0 +1,234 @@
+---
+layout: post 
+title:  "Spring ICO / DI - 의존성 주입 편"
+date:   2022-03-25 12:05:21 +0800 tags: 스프링 color: rgb(98,170,255)
+subtitle: 의존성 주입 DI에 대해 알아보자
+--- 
+
+## 🚀 의존성관계주입
+
+### 🌠 Spring ICO (Inversion Of Control)
+
+스프링에서 일반적인 Java 객체를 `new`로 생성하여 개발자가 관리하는 것이 아닌 `Spring Container`에 모두 맡긴다.
+
+따라서 개발자의 직접 관리 없없도 **`Spring Container`는 객체의 생명주기를 관리할 수 있게되며 개발자가 원하는 요청에 따라 `DI`의 요청을 수행할 수도 있다.**
+
+> 개발자 중심의 관리 ➡ 프레임워크 중심의 객체관리 권한 제공
+
+그렇다면 **`Spring Container`가 객체를 관리하면 개발자는 어떻게 `Container`로 부터 객체를 가져와야할까?**
+
+### 🌠 DI (Dependency Injection)
+
+`DI`는 `Spring Container`가 관리중인 객체를 주입할 수 있는 방법이다.
+
+
+#### ☄ DI 장점
+
+- 의존성으로 부터 격리시켜 코드 테스트에 용이하다.
+- DI를 통하여, 불가능한 상황을 Mock와 같은 기술을 통하여, 안정적으로 테스트가 가능하다.
+- 코드를 확장하거나 변경 할 때 영향을 최소화 한다. (추상화)
+- 순환 참조를 막을 수 있다.
+
+### DI - 적용 전
+
+```java
+public interface IEncoder {
+    String encode(String message);
+}
+
+public class Encoder {
+    public String encode(String message) {
+        return Base64Encoer.getEncoer()
+                .encodeToString(message.getByres());
+    }
+}
+
+public class UrlEncoder implements IEncoder {
+    @java.lang.Override
+    public String encode(String message) {
+        try {
+            return UrlEncoder.encode(message, "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+}
+
+public class Base64Encoder implements IEncoder {
+    public String encode(String message) {
+        return Base64Encoer.getEncoer()
+                .encodeToString(message.getByres());
+    }
+}
+
+public class Main() {
+    public static void main(String[] args) {
+        String url = "www.google.com";
+        
+        // TODO: 호출
+        IEncoder encoder = new Base64Encoder();
+        IEncoder urlEncoder = new UrlEncoder();
+
+        String result = encoder.encode(url);
+        String URLresult = urlEncoder.encode(url);
+    }
+}
+```
+
+어떤 문제가 보일까?
+
+코드 자체는 어떠한 문제도 없다 . 훌륭하게 추상화 까지 적용하여 깔끔한 모습이겠지만
+오늘의 목적인 `ICO / DI`가 적용되어 있지 않아 `Spring`스럽지 못하다.
+
+`main()`클래스 에서 호출되는 객체를 `Spring Container`가 직접 관리하고 주입(호출) 할 수 있게 만들어보자
+
+### IOC / DI - 적용 후
+
+스프링은 객체의 호출을 반복적으로 하는 것을 굉장히 싫어한다.
+
+반복적인 코드를 싫어한던 개발자는 생각했다.
+
+> 생성자를 객체에 직접 주입해볼까?
+
+```java
+
+// TODO: 전
+public class Encoder {
+    public String encode(String message) {
+        return Base64Encoer.getEncoer()
+                .encodeToString(message.getByres());
+    }
+}
+
+// TODO: 후
+public class Encoder {
+    
+    private IEncoder iEncoder;
+    
+    public Encoder(){
+        this.iEncoder = new Base64Encoder();
+    }
+    public String encode(String message) {
+        return iEncoder.encode(message);
+    }
+}
+
+```
+
+`UrlEncoder`, `Base64Encoder` 클래스에 상속하던 `IEncoder`인터페이스를 `Encoder`클래스에 생성자로 만들어 주었다.
+
+그러면 어떻게 될까?
+
+```java
+public interface IEncoder {
+    String encode(String message);
+}
+
+// TODO: 중요한 부분
+public class Encoder {
+
+    private IEncoder iEncoder;
+
+    public Encoder(){
+        this.iEncoder = new Base64Encoder();
+    }
+    public String encode(String message) {
+        return iEncoder.encode(message);
+    }
+}
+
+public class UrlEncoder implements IEncoder {
+    @java.lang.Override
+    public String encode(String message) {
+        try {
+            return UrlEncoder.encode(message, "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+}
+
+public class Base64Encoder implements IEncoder {
+    public String encode(String message) {
+        return Base64Encoer.getEncoer()
+                .encodeToString(message.getByres());
+    }
+}
+
+public class Main() {
+    public static void main(String[] args) {
+        String url = "www.google.com";
+        // TODO: 생성자 호출
+        Encoder encoder = new Encoder();
+
+        // 기본 생성자의 반환값은 Base64
+        String result = encoder.encode(url);
+    }
+}
+```
+
+**만일 인코딩의 종류를 바꿔야 한다면 어떨까?**
+
+```java
+public class Encoder {
+
+    private IEncoder iEncoder;
+
+    public Encoder(){
+        //this.iEncoder = new Base64Encoder();
+        this.iEncoder = new UrlEncoder();
+    }
+    public String encode(String message) {
+        return iEncoder.encode(message);
+    }
+}
+```
+
+`Encoder`의 내부 클래스의 생성자 호출을 바꿔주기만 하면 된다.
+
+**조금더 효율적으로 생각해보자**
+
+매번 필요할 때마다  `핵심 클라스(Encoder)`를 건들이는 것은 좋은 개발 일까?
+
+**이러한 불편함을 한번더 개선할 필요가 있으며 그것을 `의존성 주입`을 통해 개선이 가능하다.**
+
+```java
+
+// TODO: 의존성 주입 후
+public class Encoder {
+
+    private IEncoder iEncoder;
+    
+    //TODO: 호출한 인터페이스를 Encoder 자체에 주입했다.
+    public Encoder(IEncoder iEncoder){
+        this.iEncoder=iEncoder;
+    }
+    public String encode(String message) {
+        return iEncoder.encode(message);
+    }
+}
+
+public class Main() {
+    public static void main(String[] args) {
+        String url = "www.google.com";
+        // TODO: 생성자 호출
+        Encoder encoder = new Encoder(new Base64Encoder());
+
+        // 기본 생성자의 반환값은 Base64
+        String result = encoder.encode(url);
+    }
+}
+```
+
+`의존성 주입`의 말 그대로 **개발자가 직접 객체를 주입**하였으며 
+결과적으로 확장성과 안정성에서 개선이 되었다. 
+
+즉, **핵심 코어를 수정하지 않아도 외부 클래스에서 객체만 바꿔주는 것을 작동이 가능하게 할 수 있다.**
+
+다음은 `Spring IOC`에 대해 포스팅 한다.
+
+## 🧾 Reference
+- [책 - 스프링을 입문을 위한 자바 객체 지향의 원리와 이해](https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=55641908)
+- [한 번에 끝내는 Java/Spring 웹 개발 마스터 초격차 패키지 Online.]()
