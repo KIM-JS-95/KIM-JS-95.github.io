@@ -64,6 +64,5 @@ public class ParameterAop {
 
 ## 🧾 Reference
 
-- [책 - 스프링을 입문을 위한 자바 객체 지향의 원리와 이해](https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=55641908)
 - [한 번에 끝내는 Java/Spring 웹 개발 마스터 초격차 패키지 Online.]()
 - [책 - 스프링을 입문을 위한 자바 객체 지향의 원리와 이해](https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=55641908)
