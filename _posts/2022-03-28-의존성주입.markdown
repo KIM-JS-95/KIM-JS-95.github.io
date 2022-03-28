@@ -9,7 +9,7 @@ subtitle: 여러가지 DI에 대해 알아보자
 
 1. [Data Structure](#1-data-structure)
 
-[여기](#☄-@autowire-사용)를 눌러 이 문서
+[여기](#@autowire-사용)를 눌러 이 문서
 
 ## 🌠 스프링 없이
 
@@ -237,7 +237,7 @@ public class Driver {
 
 XML파일 내부에서 속성을 주입 해주었기 때문에 `Driver클래스`에서 Set메소드를 사용할 필요가 없어졌다.
 
-### ☄ @Autowire 사용
+### @Autowire 사용
 
 
 ## 개발을 하고 싶어요
