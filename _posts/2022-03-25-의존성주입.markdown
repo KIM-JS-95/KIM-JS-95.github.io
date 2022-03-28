@@ -1,236 +1,248 @@
 ---
 layout: post 
-title:  "Spring ICO / DI - 의존성 주입 편"
-date:   2022-03-25 12:05:21 +0800 
+title:  "Spring DI - 여러가지 방법 편"
+date:   2022-03-28 12:05:21 +0800 
 tags: 스프링 
 color: rgb(98,170,255)
-subtitle: 의존성 주입 DI에 대해 알아보자
+subtitle: 여러가지 DI에 대해 알아보자
 --- 
 
-## 🚀 의존성관계주입
-
-### 🌠 Spring ICO (Inversion Of Control)
-
-스프링에서 일반적인 Java 객체를 `new`로 생성하여 개발자가 관리하는 것이 아닌 `Spring Container`에 모두 맡긴다.
-
-따라서 개발자의 직접 관리 없없도 **`Spring Container`는 객체의 생명주기를 관리할 수 있게되며 개발자가 원하는 요청에 따라 `DI`의 요청을 수행할 수도 있다.**
-
-> 개발자 중심의 관리 ➡ 프레임워크 중심의 객체관리 권한 제공
-
-그렇다면 **`Spring Container`가 객체를 관리하면 개발자는 어떻게 `Container`로 부터 객체를 가져와야할까?**
-
-### 🌠 DI (Dependency Injection)
-
-`DI`는 `Spring Container`가 관리중인 객체를 주입할 수 있는 방법이다.
+[여기](#1-개요)를 눌러 이 문서
 
 
-#### ☄ DI 장점
+## 🌠 스프링 없이
 
-- 의존성으로 부터 격리시켜 코드 테스트에 용이하다.
-- DI를 통하여, 불가능한 상황을 Mock와 같은 기술을 통하여, 안정적으로 테스트가 가능하다.
-- 코드를 확장하거나 변경 할 때 영향을 최소화 한다. (추상화)
-- 순환 참조를 막을 수 있다.
+### ☄ 생성자를 통한 의존성 주입
 
-### DI - 적용 전
+자바를 기초로 만든 가장 기본적인 방식이 아닐까 생각한다.
+
+`Driver 클래스`에서 **Car객체**를 생성하고 그 내부에서 필요한 객체를 생성하여 주입하는 방식인데
+
+생각해본다면 코드의 유연성이 떨어지는 코드라고 생각한다. **즉, 필요에 따라 객체의 핵심을 손봐야하는 문제가 발생하는 것이다.**
 
 ```java
-public interface IEncoder {
-    String encode(String message);
+public class Car {
+	Tire tire;
+
+	public Car() {
+		tire = new KoreaTire();
+		// tire = new AmericaTire();
+	}
+
+	public String getTireBrand() {
+		return "장착된 타이어: " + tire.getBrand();
+	}
 }
 
-public class Encoder {
-    public String encode(String message) {
-        return Base64Encoer.getEncoer()
-                .encodeToString(message.getByres());
-    }
-}
-
-public class UrlEncoder implements IEncoder {
-    @java.lang.Override
-    public String encode(String message) {
-        try {
-            return UrlEncoder.encode(message, "UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
-}
-
-public class Base64Encoder implements IEncoder {
-    public String encode(String message) {
-        return Base64Encoer.getEncoer()
-                .encodeToString(message.getByres());
-    }
-}
-
-public class Main() {
+public class Driver {
     public static void main(String[] args) {
-        String url = "www.google.com";
+        Car car = new Car();
+
+        System.out.println(car.getTireBrand());
+    }
+}
+
+```
+
+그렇다면 다음과 같이 리팩토링하면 어떨까?
+
+```java
+public class Car {
+	Tire tire;
+
+	public Car(Tire tire) {
+	    //TODO: 여기 바뀜
+		This.tire = tire;
+	}
+
+	public String getTireBrand() {
+		return "장착된 타이어: " + tire.getBrand();
+	}
+}
+
+public class Driver {
+    public static void main(String[] args) {
+        Tiretire = new KoreaTire();
+        //Tire tire = new AmericaTire();
+
+        //TODO: 여기 바뀜
+        Car car = new Car(tire);
+
+        System.out.println(car.getTireBrand());
+    }
+}
+```
+
+생성자를 통해 의존성을 주입하는 것에 문제는 최초 객체를 생성하게 되면 타이어의 종류 **즉, 생성자를 바꿀수 없는 것이 문제이다.**
+
+### ☄ 속성 통한 의존성 주입
+
+`OOP` 프로그래머 답게 현실적으로 생각해 보자
+
+최소 생성된 객체가 가지는 생성자를 바꿀수 없다면 그것이 현실적인 것일까? 우리는 타이어를 바꾸고 핸드폰을 바꾸는 것이 조금더 현실적이라고 생각한다.
+
+여기서 등장한 개념이 `속성(Property)`을 통한 의존성 주입인것이다.
+
+>
+>자바에서의 속성(Property)는 다음과 같다.
+>```java
+>public class Person extends Object{ 
+>   String name; // 속성
+>   int age; // 1 
+>   
+>   void sleep(){ } // 메소드
+> }
+>```
+
+기존 JAVA에서 속성 주입은 `Set 메소드`를 사용하여 이루어졌다.
+
+```java
+public class Car {
+	Tire tire;
+
+	public Tire getTire() {
+		return tire;
+	}
+    
+	//TODO: Set 메소드 사용
+	public void setTire(Tire tire) {
+		this.tire = tire;
+	}
+
+	public String getTireBrand() {
+		return "장착된 타이어: " + tire.getBrand();
+	}
+}
+
+public class Driver {
+    public static void main(String[] args) {
+        Tire tire = new KoreaTire();
         
-        // TODO: 호출
-        IEncoder encoder = new Base64Encoder();
-        IEncoder urlEncoder = new UrlEncoder();
+        //TODO: 여기를 보세요.
+        Car car = new Car();
+        car.setTire(tire);
 
-        String result = encoder.encode(url);
-        String URLresult = urlEncoder.encode(url);
+        System.out.println(car.getTireBrand());
     }
 }
 ```
 
-어떤 문제가 보일까?
+## 🌠 스프링을 사용하여
 
-코드 자체는 어떠한 문제도 없다 . 훌륭하게 추상화 까지 적용하여 깔끔한 모습이겠지만
-오늘의 목적인 `ICO / DI`가 적용되어 있지 않아 `Spring`스럽지 못하다.
+스프링 의존성 주입 또한 생성자 / 속성 주입으로 나누어 지는데 실무에서 가장 많이 사용되는 `속성 주입` 방법만 설명한다.
 
-`main()`클래스 에서 호출되는 객체를 `Spring Container`가 직접 관리하고 주입(호출) 할 수 있게 만들어보자
+XML파일은 `스프링 프레임워크`가 무엇인지 알수 있는 핵심이기도 하다.
 
-### IOC / DI - 적용 후
+그 말은 우리가 사용하고자 하는 객체를 스프링에 Bean으로 등록하여 개발자가 필요할때 사용한다는 말이며
+`Bean`의 등록과 사용 그리고 관리가 스프링 프레임워크의 핵심이기도하기에 이해하고 넘어 가야만한다.
 
-스프링은 객체의 호출을 반복적으로 하는 것을 굉장히 싫어한다.
+### ☄ XML 파일 사용 - JAVA 코드에서 속성 주입
 
-반복적인 코드를 싫어한던 개발자는 생각했다.
+XML파일의 사용은 **대형 쇼핑몰에 상품(객체)를 등록 / 관리 하는 행위 이기도 하다.**
 
-> 생성자를 객체에 직접 주입해볼까?
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-```java
+	<bean id="tire" class="expert002.KoreaTire"></bean>
 
-// TODO: 전
-public class Encoder {
-    public String encode(String message) {
-        return Base64Encoer.getEncoer()
-                .encodeToString(message.getByres());
-    }
-}
+	<bean id="americaTire" class="expert002.AmericaTire"></bean>
 
-// TODO: 후
-public class Encoder {
-    
-    private IEncoder iEncoder;
-    
-    public Encoder(){
-        this.iEncoder = new Base64Encoder();
-    }
-    public String encode(String message) {
-        return iEncoder.encode(message);
-    }
-}
+	<bean id="car" class="expert002.Car"></bean>
 
+</beans>
 ```
 
-`UrlEncoder`, `Base64Encoder` 클래스에 상속하던 `IEncoder`인터페이스를 `Encoder`클래스에 생성자로 만들어 주었다.
-
-그러면 어떻게 될까?
-
 ```java
-public interface IEncoder {
-    String encode(String message);
+public class Car {
+	Tire tire;
+
+	public Tire getTire() {
+		return tire;
+	}
+
+	public void setTire(Tire tire) {
+		this.tire = tire;
+	}
+
+	public String getTireBrand() {
+		return "장착된 타이어: " + tire.getBrand();
+	}
 }
 
-// TODO: 중요한 부분
-public class Encoder {
-
-    private IEncoder iEncoder;
-
-    public Encoder(){
-        this.iEncoder = new Base64Encoder();
-    }
-    public String encode(String message) {
-        return iEncoder.encode(message);
-    }
-}
-
-public class UrlEncoder implements IEncoder {
-    @java.lang.Override
-    public String encode(String message) {
-        try {
-            return UrlEncoder.encode(message, "UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
-}
-
-public class Base64Encoder implements IEncoder {
-    public String encode(String message) {
-        return Base64Encoer.getEncoer()
-                .encodeToString(message.getByres());
-    }
-}
-
-public class Main() {
+public class Driver {
     public static void main(String[] args) {
-        String url = "www.google.com";
-        // TODO: 생성자 호출
-        Encoder encoder = new Encoder();
+        ApplicationContext context = new ClassPathXmlApplicationContext("XML파일위치 / **.xml");
 
-        // 기본 생성자의 반환값은 Base64
-        String result = encoder.encode(url);
+        // Car car = (Car)context.getBean("car");
+        Car car = context.getBean("car", Car.class);
+
+        // Tire tire = (Tire)context.getBean("tire");
+        Tire tire = context.getBean("tire", Tire.class);
+
+        car.setTire(tire);
+
+        System.out.println(car.getTireBrand());
     }
 }
+
 ```
 
-**만일 인코딩의 종류를 바꿔야 한다면 어떨까?**
+여기서 알아야 할 부분은 객체를 관리하는데 있어어 우리는 **JAVA코드를 수정하지 않고 XML파일만 봐주면 된다는 것이다.**
 
-```java
-public class Encoder {
+**개인적으로 코드를 이해하는데 있어서 가독성과 직관성의 향상이 XML파일 사용에 큰 장점이라고 생각한다.**
 
-    private IEncoder iEncoder;
+### ☄ XML 파일 사용 - XML 파일에서 속성 주입
 
-    public Encoder(){
-        //this.iEncoder = new Base64Encoder();
-        this.iEncoder = new UrlEncoder();
-    }
-    public String encode(String message) {
-        return iEncoder.encode(message);
-    }
-}
+속성 주입에 있어서 `JAVA 코드`를 수정하지 않고 사용할 수는 없을까?
+
+물론 `XML파일` 내부에 <Property> 태그를 사용하여 적용할 수 있다.
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="koreaTire" class="expert003.KoreaTire"></bean>
+
+	<bean id="americaTire" class="expert003.AmericaTire"></bean>
+
+	<bean id="car" class="expert003.Car">
+		<property name="tire" ref="koreaTire"></property>
+		<!--  
+		<property name="tire" ref="americaTire"></property>
+		-->
+	</bean>
+	
+</beans>
 ```
 
-`Encoder`의 내부 클래스의 생성자 호출을 바꿔주기만 하면 된다.
-
-**조금더 효율적으로 생각해보자**
-
-매번 필요할 때마다  `핵심 클라스(Encoder)`를 건들이는 것은 좋은 개발 일까?
-
-**이러한 불편함을 한번더 개선할 필요가 있으며 그것을 `의존성 주입`을 통해 개선이 가능하다.**
-
 ```java
-
-// TODO: 의존성 주입 후
-public class Encoder {
-
-    private IEncoder iEncoder;
-    
-    //TODO: 호출한 인터페이스를 Encoder 자체에 주입했다.
-    public Encoder(IEncoder iEncoder){
-        this.iEncoder=iEncoder;
-    }
-    public String encode(String message) {
-        return iEncoder.encode(message);
-    }
-}
-
-public class Main() {
+public class Driver {
     public static void main(String[] args) {
-        String url = "www.google.com";
-        // TODO: 생성자 호출
-        Encoder encoder = new Encoder(new Base64Encoder());
+        ApplicationContext context = new ClassPathXmlApplicationContext("XML파일위치 / **.xml");
 
-        // 기본 생성자의 반환값은 Base64
-        String result = encoder.encode(url);
+        Car car = context.getBean("car", Car.class);
+
+        System.out.println(car.getTireBrand());
     }
 }
 ```
 
-`의존성 주입`의 말 그대로 **개발자가 직접 객체를 주입**하였으며 
-결과적으로 확장성과 안정성에서 개선이 되었다. 
+XML파일 내부에서 속성을 주입 해주었기 때문에 `Driver클래스`에서 Set메소드를 사용할 필요가 없어졌다.
 
-즉, **핵심 코어를 수정하지 않아도 외부 클래스에서 객체만 바꿔주는 것을 작동이 가능하게 할 수 있다.**
+### ☄ @Autowire 사용
 
-다음은 `Spring IOC`에 대해 포스팅 한다.
+
+
 
 ## 🧾 Reference
 - [책 - 스프링을 입문을 위한 자바 객체 지향의 원리와 이해](https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=55641908)
 - [한 번에 끝내는 Java/Spring 웹 개발 마스터 초격차 패키지 Online.]()
+  
+`1. 개요`로 이동할 수 있다

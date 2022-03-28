@@ -28,6 +28,7 @@ subtitle: 스프링이 가지는 대표적인 디자인 패턴에 대해 알아�
 ```java
 public class Service implements IService {
     public String runSomething() {
+        
         return "서비스 짱!!!";
     }
 }
@@ -73,6 +74,7 @@ public class Proxy implements IService {
 
 public class ClientWithProxy {
     public static void main(String[] args) {
+        
         // 프록시를 이용한 호출
         IService proxy = new Proxy();
         System.out.println(proxy.runSomething());
