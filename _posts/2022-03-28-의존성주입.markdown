@@ -7,8 +7,7 @@ color: rgb(98,170,255)
 subtitle: 여러가지 DI에 대해 알아보자
 --- 
 
-[여기](#1-개요)를 눌러 이 문서
-
+[여기](#☄-@Autowire-사용)를 눌러 이 문서
 
 ## 🌠 스프링 없이
 
@@ -239,10 +238,9 @@ XML파일 내부에서 속성을 주입 해주었기 때문에 `Driver클래스`
 ### ☄ @Autowire 사용
 
 
-
+## 개발을 하고 싶어요
+## Coding을 잘하고 싶어요
 
 ## 🧾 Reference
 - [책 - 스프링을 입문을 위한 자바 객체 지향의 원리와 이해](https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=55641908)
 - [한 번에 끝내는 Java/Spring 웹 개발 마스터 초격차 패키지 Online.]()
-  
-`1. 개요`로 이동할 수 있다
