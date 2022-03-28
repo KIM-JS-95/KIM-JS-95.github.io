@@ -7,7 +7,13 @@ color: rgb(98,170,255)
 subtitle: AOP
 --- 
 
-## 🚀 관점 지향 프로그래밍
+> 목차 <br>
+> [관점 지향 프로그래밍](#관점-지향-프로그래밍)<br>
+> [횡단 관심사](#횡단-관심사)<br>
+> [AOP 예제](#AOP-예제)<br>
+
+ 
+## 관점 지향 프로그래밍
 
 `관점`에 집중한 이 개념은 특수한 기능이 아닌 개발자가 하나의 로직에 집중할 수 있도록 별도의 로직을 개설하는 과정의 개념으로 볼 수 있다.
 
@@ -33,7 +39,7 @@ subtitle: AOP
 
 `AOP`는 이러한 목표 아래 탄생한 개념인 것이다.
 
-### 🌠 횡단 관심사
+### 횡단 관심사
 
 다수의 모듈에 공통적으로 나타나는 부분이 존재하며, 우리는 이것을 횡단 관심사 라고 말한다.
 
@@ -47,7 +53,7 @@ subtitle: AOP
 
 ![030](https://user-images.githubusercontent.com/65659478/160230970-432ed18d-3d73-487b-9653-891d5d9e027b.jpg)
 
-### 🌠 AOP 예제
+### AOP 예제
 
 ```java
 
@@ -106,7 +112,7 @@ public class RestApiController {
 
 
 
-## 🧾 Reference
+## Reference
 
 - [책 - 스프링을 입문을 위한 자바 객체 지향의 원리와 이해](https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=55641908)
 - [한 번에 끝내는 Java/Spring 웹 개발 마스터 초격차 패키지 Online.]()

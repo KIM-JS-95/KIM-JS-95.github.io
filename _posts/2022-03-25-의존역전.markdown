@@ -7,9 +7,17 @@ color: rgb(98,170,255)
 subtitle: 의존성 주입 DI에 대해 알아보자
 --- 
 
-## 🚀 의존성관계주입
+> 목차 <br>
+> [의존성관계주입](#의존성관계주입)<br>
+> [Spring ICO (Inversion Of Control)](#Spring-ICO)<br>
+> [IOC 예제](#IOC-예제)<br>
+> [@Component 를 입력했더니 에러가 발생했다.](#@Component-를-입력했더니-에러가-발생했다.)<br>
+> [번외 실무에서는 잘 사용하지 않는다는 말](#번외-실무에서는-잘-사용하지-않는다는-말)<br>
 
-### 🌠 Spring ICO (Inversion Of Control)
+ 
+## 의존성관계주입
+
+### Spring ICO
 
 스프링에서 일반적인 Java 객체를 `new`로 생성하여 개발자가 관리하는 것이 아닌 `Spring Container`에 모두 맡긴다.
 
@@ -243,7 +251,7 @@ public class Encoder {
 **`IEncoder`를 상속받은 두 클래스를 본다면 `Spring` 입장에서는 어떤 두 클래스 중에서 객체를 받아야 하는지 궁금할 것이기
 때문에 지정해 주어야한다.** 라고 나는 생각한다.
 
-### 번외 (실무에서는 잘 사용하지 않는다는 말 ~~~)
+### 번외 실무에서는 잘 사용하지 않는다는 말
 
 난 두개의 `Encoder`를 모두 사용하고 싶다면 어떻게 해야할까?
 

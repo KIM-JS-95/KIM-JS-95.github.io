@@ -7,6 +7,10 @@ color: rgb(98,170,255)
 subtitle: @Autowire / @Resource 차이는?
 ---
 
+> 목차 <br>
+> [@Autowire 사용과 @Resource의 사용](#@Autowire-사용과-@Resource의-사용)<br>
+
+ 
 ## @Autowire 사용과 @Resource의 사용
 
 ```xml
@@ -60,6 +64,6 @@ public class Car {
 
 
 
-## 🧾 Reference
+## Reference
 - [책 - 스프링을 입문을 위한 자바 객체 지향의 원리와 이해](https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=55641908)
 - [한 번에 끝내는 Java/Spring 웹 개발 마스터 초격차 패키지 Online.]()
