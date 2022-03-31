@@ -1,10 +1,10 @@
 ---
 layout: post 
-title:  "Autowire vs Resource"
-date:   2022-03-28 12:05:21 +0800 
+title: "Autowire vs Resource"
+date: 2022-03-28 12:05:21 +0800 
 tags: 스프링
 color: rgb(98,170,255)
-subtitle: @Autowire / @Resource 차이는?
+subtitle:
 ---
 
 > 목차 <br>
