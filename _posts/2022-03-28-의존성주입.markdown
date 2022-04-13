@@ -1,12 +1,13 @@
 ---
-layout: post 
-title:"Spring DI - 여러가지 방법 편"
-date: 2022-03-30 10:05:21 +0800 
-tags: 스프링 
+layout: post
+title:  "의존성 주입"
+date:   2022-03-19 12:05:21 +0800
+tags: 면접 gradle maven
 color: rgb(98,170,255)
-subtitle: 여러가지 DI에 대해 알아보자
+subtitle: 
 --- 
 
+# INDEX
 > 목차 <br>
 > [스프링 없이](#스프링-없이)<br>
 > [생성자를 통한 의존성 주입](#생성자를-통한-의존성-주입)<br>

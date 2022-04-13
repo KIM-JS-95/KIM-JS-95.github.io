@@ -7,7 +7,7 @@ color: rgb(98,170,255)
 subtitle: 제이쿼리를 보내주자
 ---
  
-## 제이쿼리를 보내드리자
+# 제이쿼리를 보내드리자
 
 지난 포스팅에서 ES6의 등장과 함께 `fetch 통신`이 가능해 졌다는 이야기였다.
 
@@ -16,9 +16,9 @@ subtitle: 제이쿼리를 보내주자
 변경 대상은 다음 Repository를 통해 구현한다.
     - [게임 게시판](https://github.com/KIM-JS-95/CutLinePages.git)
 
-### Post 변경
+## Post 변경
 
-#### 제이쿼리
+### 제이쿼리
 
 ``` javascript
 
@@ -44,36 +44,39 @@ $('#save').on('click', function () {
 
 ```
 
-#### fetch
+### fetch
 
 ``` javascript
 
-const save = document.getElementById("save");
-save.addEventListener("click",save_func);
+    const save = document.getElementById("save");
+    save.addEventListener("click", save_func);
 
-function save_func() {
+    function save_func() {
 
-    const title = document.getElementById("title").value;
-    const content = document.getElementById("content").value;
-    const link = document.getElementById("link").value;
+        const title = document.getElementById("title").value;
+        const content = document.getElementById("content").value;
+        const link = document.getElementById("link").value;
 
-   var data={
-       title: title,
-       content: content,
-       link: link
-   };
+        var data = {
+            title: title,
+            content: content,
+            link: link
+        };
 
-   fetch("/gallary/create", {
-       method: "POST", // POST
-       headers: { // 헤더 조작
-        "Content-Type": "application/json;",
-       },
-       body: JSON.stringify(data),
-   })
-       .then(alert('저장 성공'))
-       .then(window.location.href='/home/guest')
-       .catch((data) => console.log(data))
-}
+        fetch("/gallary/create", {
+            method: "POST", // POST
+            headers: { // 헤더 조작
+                "Content-Type": "application/json;",
+            },
+            body: JSON.stringify(data),
+        })
+            .then(alert('저장 성공'))
+            .then(function (res) {
+                if (res.ok) {
+                    window.location.href = '/home/guest';
+                }
+            })
+    }
 
 ```
 
@@ -89,9 +92,23 @@ function save_func() {
 
 
 
-### GET 변경
+## GET 변경
+
+### 제이쿼리
+### 자바 스크립트
 
 
+## PUT 변경
+
+### 제이쿼리
+### 자바 스크립트
+
+
+
+## DELETE 변경
+
+### 제이쿼리
+### 자바 스크립트
 
 ## 정리
 
