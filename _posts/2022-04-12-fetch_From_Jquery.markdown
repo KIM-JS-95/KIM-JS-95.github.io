@@ -92,8 +92,8 @@ $('#save').on('click', function () {
 
 
 
-## GET 변경
-
+## GET 변경 (학습중 )
+    
 ### 제이쿼리
 ### 자바 스크립트
 
@@ -101,15 +101,119 @@ $('#save').on('click', function () {
 ## PUT 변경
 
 ### 제이쿼리
+
+```javascripts
+    $('#update').on('click', function () {
+    
+        if (confirm("수정하시겠습니까?") == true) {
+    
+            var id = document.getElementById("id1").innerText;
+    
+            var data = {
+                title: $('#title').val(),
+                content: $('#content').val(),
+                link: $('#link').val()
+            };
+    
+            $.ajax({
+                type: 'PUT',
+                url: '/gallary/update/' + id,
+                contentType: 'application/json; charset=utf-8',
+                data: JSON.stringify(data)
+            }).done(function () {
+                alert('저장 성공');
+                window.location.href = '/gallary/view/' + id;
+            }).fail(function (error) {
+                alert(JSON.stringify(error));
+            });
+        }
+    });
+```
 ### 자바 스크립트
 
+```javascript
+   const updata_val = document.getElementById("updata");
+    updata_val.addEventListener("click", updata_fun);
+
+
+    function updata_fun() {
+
+        const title = document.getElementById("title").value;
+        const content = document.getElementById("content").value;
+        const link = document.getElementById("link").value;
+
+        var data = {
+            title: title,
+            content: content,
+            link: link
+        };
+
+        fetch('/gallary/update/' + id, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json;"
+            },
+            body: JSON.stringify(data),
+        })
+            .then(alert("수정되었습니다."))
+            .then(function (res) {
+                if (res.ok) {
+                    window.location.href = '/home/guest';
+                }
+            })
+    }
+```
 
 
 ## DELETE 변경
 
 ### 제이쿼리
+
+```javascript
+$('#delete').on('click', function() {
+if(confirm("삭제하시겠습니까?")==true){
+
+ var id = document.getElementById("id1").innerText;
+
+              $.ajax({
+               type: 'DELETE',
+               url: '/gallary/delete/' + id,
+           }).done(function(){
+           alert('글이 삭제되었습니다.');
+            window.location.href='/home/guest'
+           }).fail(function (error) {
+           alert(JSON.stringify(error));
+     });
+}
+});
+```
+
 ### 자바 스크립트
 
+```javascript
+    const dele = document.getElementById("delete");
+    dele.addEventListener("click", delete_function);
+
+
+    function delete_function() {
+        if (confirm("삭제하시겠습니까?") == true) {
+            var id = document.getElementById("id1").innerText;
+
+            fetch('/gallary/delete/' + id, {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json;"
+                }
+            })
+                .then(alert('글이 삭제되었습니다.'))
+                .then(function (res) {
+                    if (res.ok) {
+                        window.location.href = '/home/guest';
+                    }
+                })
+        }
+    };
+```
 ## 정리
 
 두 방식의 AJAX 방식을 표현하자면 <b>제이쿼리는 윈도우 / 자바스크립트는 리눅스</b> 같았다.

@@ -18,20 +18,18 @@ SSAFY 7기 CT 문제에 출제되었던 문제로 1차원 배열에서 가장 �
 
 [LeetCode 53. Maximum Subarray](https://leetcode.com/problems/maximum-subarray/) 문제 링크
 ```java
-public int maxSubArray(int[] nums) {
-        int sum = 0;
-        int max = Integer.MIN_VALUE;
+public int maxSubArray(int[]nums){
+        int sum=0;
+        int max=Integer.MIN_VALUE;
 
-        for (int i = 0; i < nums.length; i++){
-        sum+= nums[i];
-
-        max = Math.max(sum, max);
-        if (sum < 0)
-        sum = 0;
+        for(int i=0;i<nums.length;i++){
+            sum+=nums[i];
+            max=Math.max(sum,max);
+            if(sum< 0)
+            sum=0;
         }
-
         return max;
-        }
+}
 ```
 전 배열을 순회하면서 값을 하나씩 더해 현재 위치 까지의 배열의 최대 값과 비교하여 더 큰값을 가져간다.
 
